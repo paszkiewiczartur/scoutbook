@@ -1,21 +1,25 @@
-angular.module('app')
+angular.module('scoutbookApp')
 .constant('LOGIN_ENDPOINT', '/login')
-.service('AuthenticationService', function($http, LOGIN_ENDPOINT) {
-	this.authenticate = function(credentials, successCallback) {
+.service('AuthenticationService', function($http, LOGIN_ENDPOINT, $rootScope, $state) {
+	this.authenticate = function(credentials) {
 		var authHeader = {Authorization: 'Basic ' + btoa(credentials.email+':'+credentials.password)};
 		var config = {headers: authHeader};
 		$http
 		.post(LOGIN_ENDPOINT, {}, config)
 		.then(function success(value) {
 			$http.defaults.headers.post.Authorization = authHeader.Authorization;
-			successCallback();
+			$rootScope.authenticated = true;
+			$state.go("home.wall");
 		}, function error(reason) {
 			console.log('Login error');
 			console.log(reason);
+			$rootScope.credentials = {};
+			$state.go("failedLogin");
 		});
 	}
-	this.logout = function(successCallback) {
+	this.logout = function() {
 		delete $http.defaults.headers.post.Authorization;
-		successCallback();
+		$rootScope.authenticated = false;
+		$state.go("register");
 	}
 });

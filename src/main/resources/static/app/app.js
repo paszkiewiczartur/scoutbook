@@ -22,6 +22,11 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
             templateUrl: 'app/register/register.html',
             controller: 'registerController'
         })
+        .state('failedLogin', {
+            url: '/failedLogin',
+            templateUrl: 'app/failedLogin/failedLogin.html',
+            controller: 'failedLoginController'
+        })
         .state('home', {
         	url: '/home',
         	views: {
