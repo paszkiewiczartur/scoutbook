@@ -7,9 +7,11 @@ angular.module('scoutbookApp')
 		$http
 		.post(LOGIN_ENDPOINT, {}, config)
 		.then(function success(value) {
+			console.log("autoryzacja " + authHeader.Authorization);
 			$http.defaults.headers.post.Authorization = authHeader.Authorization;
 			$rootScope.authenticated = true;
-			$state.go("home.wall");
+			authenticated = true;
+			$state.go("home");
 		}, function error(reason) {
 			console.log('Login error');
 			console.log(reason);
@@ -20,6 +22,7 @@ angular.module('scoutbookApp')
 	this.logout = function() {
 		delete $http.defaults.headers.post.Authorization;
 		$rootScope.authenticated = false;
+		authenticated = false;
 		$state.go("register");
 	}
 });

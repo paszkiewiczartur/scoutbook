@@ -1,4 +1,4 @@
-package pl.scoutbook.service;
+package pl.scoutbook.security;
 
 import java.security.Principal;
 
