@@ -3,7 +3,8 @@ package pl.scoutbook.model;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Email;
 
 public class RegisterDTO {
 	@NotNull
@@ -15,7 +16,6 @@ public class RegisterDTO {
 	@NotNull
     private String password;
 	@NotNull
-	@Past
 	private LocalDate birthday;
 	@NotNull
 	private Gender gender;

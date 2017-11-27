@@ -1,36 +1,81 @@
 ﻿	<div id="registerNav">
-		<div>
-			<h1>Scoutbook</h1>
+		<div class="left navOdstep">
+			<h2>Scoutbook</h2>
 		</div>
-		<div class="form-group">
+		<div class="form-inline navOdstep left navTopMargin">
+		<form name="loginForm">
 			<label>Email:</label>
-			<input type="text" ng-model="credentials.email" class="form-control">
+			<input type="text" ng-model="credentials.email" class="form-control" required>
 			<label>Hasło:</label>
-			<input type="password" ng-model="credentials.password" class="form-control">
-			<button ng-click="login()" class="btn btn-success">Zaloguj</button>
+			<input type="password" ng-model="credentials.password" class="form-control" required>
+			<button type="submit" ng-click="login()" class="btn btn-success" ng-disabled="loginForm.$invalid">Zaloguj</button>
 			<a ui-sref="admin">Admin</a>
+		</form>
 		</div>	
+		<div class="clearer"></div>
 	</div>
-	<div class="clearer"></div>
-	<div id="registerMain">
-		<div class="left">
-			<img id="registerLogo" src="http://scouts.org.uk/images/scouts-logo-fleur-wide.png" />
+	<div>
+		<div class="col-md-2"></div>
+		<div class="col-md-3 mainTopMargin">
+			<img id="registerLogo" src="http://www.dokumenty.zhp.wlkp.pl/grafiki/lilijka_zielona.jpg" />
 		</div>	
-		<div class="left">
+		<div class="col-md-2"></div>
+		<div class="col-md-4 mainTopMargin">
+			<div ng-show="successRegister" class="alert alert-success">
+				Twoje konto zostało utworzone. Możesz teraz zalogować się.
+			</div>
+		<div ng-hide="successRegister">
+		<form name="registerForm">
 			<div>Utwórz nowe konto!</div>
-			<div>		
-		        <input class="form-control" required/>
-		        <input class="form-control" required/>		        
+			<div ng-class="{ 'has-error': (inputErrors.firstname || (registerForm.firstname.$invalid && registerForm.firstname.$dirty))}">
+   				<div class="alert alert-danger" ng-show="inputErrors.firstname || 
+   								(registerForm.firstname.$invalid && registerForm.firstname.$dirty)">
+   					Wpisz imię
+   				</div>
+		        <input name="firstname" type="text" class="form-control" placeholder="Imię" ng-model="registerData.firstname" required/>
+   			</div>
+   			<div ng-class="{ 'has-error': (inputErrors.lastname || (registerForm.lastname.$invalid && registerForm.lastname.$dirty))}">
+   				<div class="alert alert-danger" ng-show="inputErrors.lastname || 
+   								(registerForm.lastname.$invalid && registerForm.lastname.$dirty)">
+   					Wpisz nazwisko
+   				</div>
+		        <input name="lastname" type="text" class="form-control" placeholder="Nazwisko" ng-model="registerData.lastname" required/>		        
 			</div>
-			<div>		
-		        <input class="form-control" required/>		        
+			<div ng-class="{ 'has-error': (inputErrors.emailEmpty || inputErrors.emailDuplicate || inputErrors.emailWrongPattern 
+											|| (registerForm.email.$invalid && registerForm.email.$dirty)) }">		
+				<div class="alert alert-danger" ng-show="inputErrors.emailEmpty 
+						|| (registerForm.email.$invalid && registerForm.email.$dirty)">Wpisz adres email</div>
+				<div class="alert alert-danger" ng-show="inputErrors.emailWrongPattern">Wpisany adres email ma niepoprawny format</div>
+				<div class="alert alert-danger" ng-show="inputErrors.emailDuplicate">Podany adres email istnieje w bazie. Wpisz inny.</div>
+		        <input name="email" type="email" class="form-control" placeholder="Adres email" ng-model="registerData.email" required/>		        
 			</div>
-			<div>		
-		        <input class="form-control" required/>		        
+			<div ng-class="{ 'has-error': (inputErrors.password || (registerForm.password.$invalid && registerForm.password.$dirty))}">		
+				<div class="alert alert-danger" ng-show="inputErrors.password ||
+								 (registerForm.password.$invalid && registerForm.password.$dirty)">Wpisz hasło</div>
+		        <input name="password" type="password" class="form-control" placeholder="Nowe hasło" ng-model="registerData.password" required/>       
+			</div>
+			<div>Data urodzenia</div>
+			<div>
+				<select ng-model="birthday.day" ng-options="x for x in days"></select>
+				<select ng-model="birthday.month" ng-options="x for x in months"></select>
+				<select ng-model="birthday.year" ng-options="x for x in years"></select>
 			</div>
 			<div>
-				<input type="button" value="Wyślij"/>
+				<div class="alert alert-danger" ng-show="inputErrors.gender">Zaznacz płeć</div>
+				<label class="radio-inline"><input type="radio" name="gender" value="MALE" ng-model="registerData.gender" required>
+					Mężczyzna
+				</label>
+				<label class="radio-inline"><input type="radio" name="gender" value="FEMALE" ng-model="registerData.gender" required>
+					Kobieta
+				</label>
 			</div>
+		
+			<div>
+				<input type="button" value="Utwórz konto" ng-disabled="registerForm.$invalid"
+                    ng-click="prepareAndSendRegisterData()"
+                    class="btn btn-success"/>
+			</div>
+		</form>
+		</div>
 		</div>
 	</div>
-	<div class="clearer"></div>

@@ -1,19 +1,14 @@
 package pl.scoutbook.model;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
@@ -25,16 +20,15 @@ public class UserProfile {
     private Long id;
     @NotNull
     @Column(nullable = false)
-	private String firstName;
+	private String firstname;
     @NotNull
     @Column(nullable = false)
-	private String lastName;
+	private String lastname;
 	@NotNull
 	@Column(nullable = false)
 	private Gender gender;
 	@NotNull
 	@Column(nullable = false)
-	@Past
 	private LocalDate birthday;
     
 	public UserProfile(){}
@@ -47,22 +41,23 @@ public class UserProfile {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
+	@Enumerated(EnumType.ORDINAL)
 	public Gender getGender() {
 		return gender;
 	}

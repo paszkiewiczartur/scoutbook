@@ -26,7 +26,6 @@ public class User {
     @Column(nullable = false)
     private String password;
     @NotNull
-    @Column(nullable = false, unique = true)
     @OneToOne
     private UserProfile userProfile;
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)

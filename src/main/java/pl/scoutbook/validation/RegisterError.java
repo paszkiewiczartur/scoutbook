@@ -5,6 +5,7 @@ public enum RegisterError {
     LASTNAMEEMPTY("lastnameEmpty"), 
     PASSWORDEMPTY("passwordEmpty"),
     EMAILEMPTY("emailEmpty"),
+    EMAILWRONGPATTERN("emailWrongPattern"),
     EMAILDUPLICATE("emailDuplicate"),
     GENDEREMPTY("genderEmpty"),
     BIRTHDAYNOTPAST("birthdayNotPast"),

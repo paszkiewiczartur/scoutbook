@@ -1,7 +1,7 @@
 package pl.scoutbook.model;
 
 public enum Gender {
-	MALE("mężczyzna"), FEMALE("kobieta");
+	FEMALE("kobieta"), MALE("mężczyzna");
 	
 	private String description;
 	

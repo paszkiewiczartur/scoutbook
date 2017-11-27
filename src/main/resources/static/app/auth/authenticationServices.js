@@ -2,7 +2,7 @@ angular.module('scoutbookApp')
 .constant('LOGIN_ENDPOINT', '/login')
 .service('AuthenticationService', function($http, LOGIN_ENDPOINT, $rootScope, $state) {
 	this.authenticate = function(credentials) {
-		var authHeader = {Authorization: 'Basic ' + btoa(credentials.email+':'+credentials.password)};
+		var authHeader = {Authorization: 'Basic ' + btoa(unescape(encodeURIComponent(credentials.email+':'+credentials.password)))};
 		var config = {headers: authHeader};
 		$http
 		.post(LOGIN_ENDPOINT, {}, config)

@@ -1,4 +1,5 @@
 angular.module('scoutbookApp')
-.controller('groupController', function($rootScope) {
-	var ctrl = this;
+.controller('groupController', function($rootScope, $scope) {
+	$scope.test = "test";
+	$scope.gender = "MALE";
 });

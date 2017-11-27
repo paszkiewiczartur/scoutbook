@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .csrf()
             .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
         .authorizeRequests()
+        	.antMatchers(HttpMethod.POST, "/api/register").permitAll()
             .antMatchers(HttpMethod.POST).authenticated().and()
         .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -5,17 +5,34 @@
 .ngFade.ng-enter-active { 
 	opacity: 1; 
 }
-#registerNav div, #registerMain div.left{
+#registerNav{
+	background-color: green;
+	color: white;
+}
+.left{
 	float: left;
+}
+.navOdstep{
+	margin-left: 200px;
 }
 .clearer{
 	clear: both;
 }
 #nav{
-	background-color: blue;
+	background-color: green;
 	color: white;
 }
 #registerLogo{
-	width: 500px;
+	width: 300px;
 	height: 300px;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: green;
+    opacity: 1; /* Firefox */
+}
+.navTopMargin{
+	margin-top: 15px;
+}
+.mainTopMargin{
+	margin-top: 100px;
 }
