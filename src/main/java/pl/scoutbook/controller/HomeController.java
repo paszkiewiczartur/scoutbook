@@ -13,5 +13,5 @@ public class HomeController {
     public String administrator() {
     	System.out.println("Przekierowuję do admina");
         return "admin.html";
-    }   
+    }
 }

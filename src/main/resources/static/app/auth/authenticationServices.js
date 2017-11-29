@@ -15,6 +15,7 @@ angular.module('scoutbookApp')
 		}, function error(reason) {
 			console.log('Login error');
 			console.log(reason);
+			$rootScope.wrongEmail = credentials.email;
 			$rootScope.credentials = {};
 			$state.go("failedLogin");
 		});

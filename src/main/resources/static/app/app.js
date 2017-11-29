@@ -23,18 +23,22 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         .state('register', {
             url: '/register',
             templateUrl: 'app/register/register.html',
-            controller: 'registerController',
-            data: {
-                freeRide: true
-            }
+            controller: 'registerController'
         })
         .state('failedLogin', {
             url: '/failedLogin',
             templateUrl: 'app/failedLogin/failedLogin.html',
-            controller: 'failedLoginController',
-            data: {
-                freeRide: true
-            }
+            controller: 'failedLoginController'
+        })
+        .state('changePassword', {
+            url: '/changePassword/:code',
+            templateUrl: 'app/failedLogin/changePassword.html',
+            controller: 'changePasswordController'
+        })
+        .state('retrievePassword', {
+            url: '/retrievePassword',
+            templateUrl: 'app/failedLogin/retrievePassword.html',
+            controller: 'retrievePasswordController'
         })
         .state('home', {
         	url: '/home',
@@ -66,6 +70,11 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         	url: '/group',
         	templateUrl: '/app/group/group.html',
         	controller: 'groupController'
+        })
+        .state('home.profile', {
+        	url: '/profile',
+        	templateUrl: '/app/profile/profile.html',
+        	controller: 'profileController'
         })
         ;
 });

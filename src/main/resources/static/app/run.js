@@ -1,12 +1,5 @@
 angular.module('scoutbookApp')
 .run(function($state, $rootScope, $location, $transitions, $stateParams) {
-/*	$rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error){
-		console.log("Jest błąd");
-		if(error === "Not Authorized"){
-			console.log("Przekierowuję");
-			$state.go("register");
-		}
-	});*/
 
     $transitions.onError({}, function(transition) {
         console.log('error', transition.error().message, transition);

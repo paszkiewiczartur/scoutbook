@@ -1,5 +1,5 @@
-﻿<div id="registerNav">
-	<div class="left navOdstep">
+﻿<div id="failedRegisterNav">
+	<div class="navOdstep">
 		<h2>Scoutbook</h2>
 	</div>
 </div>
@@ -10,8 +10,8 @@
 			<input type="text" ng-model="credentials.email" class="form-control" required>
 			<label>Hasło:</label>
 			<input type="password" ng-model="credentials.password" class="form-control" required>
-			<button type="submit" ng-click="login()" class="btn btn-success" ng-disabled="loginForm.$invalid">Zaloguj</button>
-			<a ui-sref="admin">Odzyskaj hasło</a>
+			<button type="submit" ng-click="login()" class="btn btn-success" ng-disabled="loginForm.$invalid">Zaloguj</button><br>
+			<a style="color: black; " ui-sref="retrievePassword">Odzyskaj hasło</a>
 		</div>
 	</form>
 </div>

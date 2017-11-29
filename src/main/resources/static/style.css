@@ -5,7 +5,7 @@
 .ngFade.ng-enter-active { 
 	opacity: 1; 
 }
-#registerNav{
+#registerNav, #failedRegisterNav{
 	background-color: green;
 	color: white;
 }
@@ -15,24 +15,56 @@
 .navOdstep{
 	margin-left: 200px;
 }
+.navLeftOdstep{
+	margin-left: 100px;
+}
 .clearer{
 	clear: both;
 }
 #nav{
 	background-color: green;
 	color: white;
+	height: 50px;
 }
 #registerLogo{
 	width: 300px;
 	height: 300px;
-}
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: green;
-    opacity: 1; /* Firefox */
 }
 .navTopMargin{
 	margin-top: 15px;
 }
 .mainTopMargin{
 	margin-top: 100px;
+}
+#backgroundImage{
+	width: 100%;
+	height: 300px;
+}
+#profileImage{
+	position: absolute;
+	left: 30px;
+	top: 200px;
+	width: 100px;
+	height: 100px;
+	z-index: 2;
+	background-color: white;
+	border: solid 5px white;
+}
+a:link, a:active, a:visited{
+	color: white;
+}
+a:hover{
+	color:pink;
+}
+#retrievePasswordMain{
+	text-align: center; 
+	margin-top: 100px; 
+	padding-top: 100px;
+}
+#retrievePasswordInside{
+	padding: 10px 40px; 
+	margin: auto; 
+	background-color: #dddddd; 
+	border-radius: 25px; 
+	height: 250px; 
 }
