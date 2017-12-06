@@ -1,6 +1,7 @@
 package pl.scoutbook.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,14 +10,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 @Entity
 public class UserProfile {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "id_user_profile")
     private Long id;
     @NotNull
     @Column(nullable = false)
@@ -30,6 +34,11 @@ public class UserProfile {
 	@NotNull
 	@Column(nullable = false)
 	private LocalDate birthday;
+    @ManyToMany
+    @JoinTable(name = "user_groups",
+            joinColumns = { @JoinColumn(name = "user_profile_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "groups_id", referencedColumnName = "id") })
+    private List<Group> groups;
     
 	public UserProfile(){}
 
@@ -72,6 +81,14 @@ public class UserProfile {
 
 	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
+	}
+
+	public List<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
 	}
 
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import pl.scoutbook.model.NewPasswordCode;
 
-
 @Repository 
 public interface NewPasswordCodeRepository extends JpaRepository<NewPasswordCode, Long> {
     NewPasswordCode findByCode(String code);

@@ -1,13 +1,12 @@
 package pl.scoutbook.controller;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +20,7 @@ import pl.scoutbook.model.RetrievePasswordMessage;
 import pl.scoutbook.model.User;
 import pl.scoutbook.repository.NewPasswordCodeRepository;
 import pl.scoutbook.repository.UserRepository;
+import pl.scoutbook.validation.ChangePasswordValidator;
 
 @Controller
 public class RetrievePasswordController {
@@ -29,7 +29,7 @@ public class RetrievePasswordController {
 	private RetrieveEmailSender emailSender;
 	
 	@Autowired
-	private NewPasswordCodeRepository newPasswordRepository;
+	private NewPasswordCodeRepository newPasswordCodeRepository;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -42,8 +42,9 @@ public class RetrievePasswordController {
 		NewPasswordCode newPasswordCode = new NewPasswordCode();
 		newPasswordCode.setCode(code);
 		newPasswordCode.setEmail(message.getEmail());
-		newPasswordRepository.save(newPasswordCode);
+		newPasswordCodeRepository.save(newPasswordCode);
 		emailSender.sendSimpleEmail(message.getEmail(), code);
+//		emailSender.sendHTMLEmailWithAttachment(message.getEmail(), code);
     }
 
 	@PostMapping
@@ -51,11 +52,17 @@ public class RetrievePasswordController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
     public void changePassword(@Valid @RequestBody ChangePassword changePassword) {
 		String code = changePassword.getCode();
-		NewPasswordCode newPasswordCode = newPasswordRepository.findByCode(code);
+		NewPasswordCode newPasswordCode = newPasswordCodeRepository.findByCode(code);
 		String email = newPasswordCode.getEmail();
 		User user = userRepository.findByEmail(email);
 		user.setPassword(changePassword.getPassword());
 		userRepository.save(user);
+		newPasswordCodeRepository.delete(newPasswordCode);
 	}
+
+	@InitBinder("changePassword")
+    protected void initChangePasswordBinder(WebDataBinder binder) {
+        binder.setValidator(new ChangePasswordValidator(newPasswordCodeRepository));
+    }
 
 }

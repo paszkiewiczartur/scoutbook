@@ -14,13 +14,15 @@ import pl.scoutbook.model.NewPasswordCode;
 import pl.scoutbook.repository.NewPasswordCodeRepository;
 
 
-@Component("beforeCreateWebsiteChangePasswordValidator")
+//@Component("beforeCreateChangePasswordValidator")
+@Component
 public class ChangePasswordValidator implements Validator {
 	
-	@Autowired
 	NewPasswordCodeRepository newPasswordCodeRepository;
 	
-	public ChangePasswordValidator(){}
+	public ChangePasswordValidator(NewPasswordCodeRepository newPasswordCodeRepository){
+		this.newPasswordCodeRepository = newPasswordCodeRepository;
+	}
 	
     @Override
     public boolean supports(Class<?> clazz) {
@@ -29,6 +31,7 @@ public class ChangePasswordValidator implements Validator {
  
     @Override
     public void validate(Object obj, Errors errors) {
+    	System.out.println("inside Validate");
         ChangePassword changePassword = (ChangePassword) obj;
         if (checkInputString(changePassword.getCode())) {
             errors.rejectValue("code", ChangePasswordError.CODEEMPTY.toString());
@@ -41,7 +44,7 @@ public class ChangePasswordValidator implements Validator {
         }
         if( checkIfHourPassed(changePassword.getCode())){
         	System.out.println("reject HOURPASSED");
-        	errors.rejectValue("time", ChangePasswordError.HOURPASSED.toString());
+        	errors.rejectValue("code", ChangePasswordError.HOURPASSED.toString());
         }
     }
  
@@ -56,12 +59,13 @@ public class ChangePasswordValidator implements Validator {
     
     private boolean checkIfHourPassed(String input){
     	NewPasswordCode newPasswordCode = newPasswordCodeRepository.findByCode(input);
-    	LocalDateTime timeEmailSent = newPasswordCode.getTime();
-    	LocalDateTime hourAgo = LocalDateTime.now().minusMinutes(1);
-    	Duration duration = Duration.between(hourAgo, timeEmailSent);
-    	System.out.println("duration.getSeconds():" + duration.getSeconds());
-    	System.out.println("duration.toMinutes():" + duration.toMinutes());
-    	System.out.println("hourAgo.isAfter(timeEmailSent)" + hourAgo.isAfter(timeEmailSent));
-    	return hourAgo.isAfter(timeEmailSent);
+    	if(Optional.ofNullable(newPasswordCode).isPresent()){
+        	LocalDateTime timeEmailSent = newPasswordCode.getTime();
+        	LocalDateTime hourAgo = LocalDateTime.now().minusHours(1);
+        	return hourAgo.isAfter(timeEmailSent);    		
+    	} else {
+    		return false;
+    	}
+    	
     }
 }

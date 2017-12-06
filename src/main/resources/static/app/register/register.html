@@ -5,7 +5,7 @@
 		<div class="form-inline navOdstep left navTopMargin">
 		<form name="loginForm">
 			<label>Email:</label>
-			<input type="text" ng-model="credentials.email" class="form-control" required>
+			<input type="text" ng-model="credentials.email" class="form-control" required autofocus>
 			<label>Hasło:</label>
 			<input type="password" ng-model="credentials.password" class="form-control" required>
 			<button type="submit" ng-click="login()" class="btn btn-success" ng-disabled="loginForm.$invalid">Zaloguj</button>

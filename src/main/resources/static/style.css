@@ -1,3 +1,45 @@
+#backgroundImage{
+	width: 100%;
+	height: 300px;
+}
+.clearer{
+	clear: both;
+}
+#failedRegisterMain{
+	padding-top: 100px;
+}
+#failedRegisterNav{
+	height: 83px;
+	padding-top: 15px;
+	margin-top: -20px;
+	background-color: green;
+	color: white;
+}
+.left{
+	float: left;
+}
+.mainTopMargin{
+	margin-top: 100px;
+}
+.navh2{
+	font-size: 30px;
+}
+.navLeftOdstep{
+	margin-left: 100px;
+}
+#navNav{
+	background-color: green;
+	color: white;
+	height: 63px;
+	margin-top: -20px;
+	padding-top: 14px;
+}
+.navOdstep{
+	margin-left: 200px;
+}
+.navTopMargin{
+	margin-top: 15px;
+}
 .ngFade.ng-enter { 
 	transition: 0.5s linear all; 
 	opacity: 0; 
@@ -5,61 +47,23 @@
 .ngFade.ng-enter-active { 
 	opacity: 1; 
 }
-#registerNav, #failedRegisterNav{
-	background-color: green;
-	color: white;
-}
-.left{
-	float: left;
-}
-.navOdstep{
-	margin-left: 200px;
-}
-.navLeftOdstep{
-	margin-left: 100px;
-}
-.clearer{
-	clear: both;
-}
-#nav{
-	background-color: green;
-	color: white;
-	height: 50px;
+#profileImage{
+	position: absolute;
+	left: 30px;
+	top: 200px;
+	width: 140px;
+	height: 140px;
+	z-index: 2;
+	background-color: white;
+	border: solid 5px white;
 }
 #registerLogo{
 	width: 300px;
 	height: 300px;
 }
-.navTopMargin{
-	margin-top: 15px;
-}
-.mainTopMargin{
-	margin-top: 100px;
-}
-#backgroundImage{
-	width: 100%;
-	height: 300px;
-}
-#profileImage{
-	position: absolute;
-	left: 30px;
-	top: 200px;
-	width: 100px;
-	height: 100px;
-	z-index: 2;
-	background-color: white;
-	border: solid 5px white;
-}
-a:link, a:active, a:visited{
+#registerNav{
+	background-color: green;
 	color: white;
-}
-a:hover{
-	color:pink;
-}
-#retrievePasswordMain{
-	text-align: center; 
-	margin-top: 100px; 
-	padding-top: 100px;
 }
 #retrievePasswordInside{
 	padding: 10px 40px; 
@@ -67,4 +71,12 @@ a:hover{
 	background-color: #dddddd; 
 	border-radius: 25px; 
 	height: 250px; 
+}
+#retrievePasswordMain{
+	text-align: center; 
+	margin-top: 40px; 
+	padding-top: 80px;
+}
+.white, .white:hover, .white:active{
+	color: white;
 }

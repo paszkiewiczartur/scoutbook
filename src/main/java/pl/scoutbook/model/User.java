@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
     @Id
@@ -24,6 +26,7 @@ public class User {
 	private String email;
     @NotNull
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
     @NotNull
     @OneToOne

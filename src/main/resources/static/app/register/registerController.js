@@ -79,4 +79,6 @@
     	
     	sendRegisterData($scope.registerData);
     };
+    
+
 });

@@ -1,11 +1,10 @@
 package pl.scoutbook.service;
 
-import java.io.File;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -52,6 +51,25 @@ public class EmailServiceImpl implements EmailService {
             e.printStackTrace();
         }
     }
-    
+
+    public void sendHTMLMessageWithAttachment(String to, String subject, String text, String pathToAttachment, String imageName) {
+        try {
+            MimeMessage message = emailSender.createMimeMessage();
+            // pass 'true' to the constructor to create a multipart message
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(text, true);
+            
+            ClassPathResource image = new ClassPathResource(pathToAttachment);
+            helper.addInline(imageName, image);
+            
+            emailSender.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
     
 }

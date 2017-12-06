@@ -1,12 +1,20 @@
 ﻿<div class="col-md-3">
 	<a ui-sref="home">Wall</a>
 	To jest menu nawigacyjne
+	<button ng-click="test()">Test</button>
 </div>
 <div class="col-md-6">
-	Tu jest informacja o grupie
-	<input type="text" ng-model="test"><br>
-	<input type="radio" value="FEMALE" ng-model="gender">Kobieta
-	<input type="radio" value="MALE" ng-model="gender">Mężczyzna
+	<div ng-if="info">{{info}}</div>
+	Tu jest informacja o grupie<br>
+	Grupa {{groupData.name}}<br>
+	
+	<div class="well" ng-repeat="post in groupData.posts">
+		 <button type="button" class="btn btn-success">Data <span class="badge">{{post.createdAt}}</span></button> 
+		 Autor: <a ui-sref="home.profile({profileId: post.owner.id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+		 <span ng-if="profileErrors[$index]" class="alert alert-danger">{{profileErrors[$index]}}</span><br>
+		{{post.content}}
+	</div>
+	
 </div>
 <div class="col-md-3">
 	Dodaj członków

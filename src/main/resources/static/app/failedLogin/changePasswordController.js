@@ -5,6 +5,7 @@ angular.module('scoutbookApp')
 	$scope.responseErrors = {};
 	
 	$scope.sendPassword = function(){
+		$scope.differentPassword = false;
 		if($scope.password1 == $scope.password2){
 			
 			var message = {};
@@ -14,11 +15,17 @@ angular.module('scoutbookApp')
 			.post(CHANGEPASSWORD_ENDPOINT, message)
 			.then(function success(successValue) {
 				console.log("successValue:" + successValue);
+				$scope.password1 = "";
+				$scope.password2 = "";
 				$scope.passwordSent = true;
 			}, function error(errorValue) {
+				$scope.password1 = "";
+				$scope.password2 = "";
 				var error = angular.copy(errorValue);
-				console.log("errorValue:" + error);
-				prepareInputErrors(errorValue);
+				console.log(error);
+				var response = errorValue.data.errors;
+            	console.log(response);
+                prepareInputErrors(response);
 				$scope.errorPassword = true;
 			});
 		} else{

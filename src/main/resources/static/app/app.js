@@ -13,6 +13,11 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         url: '/admin',
         template: 'Redirecting...<script>window.location="http://localhost:8080/secret"</script>'
    });
+
+    $stateProvider.state('start', {
+        url: '/start',
+        template: 'Redirecting...<script>window.location="http://localhost:8080/register"</script>'
+   });
     
     $locationProvider.html5Mode({
         enabled: true,
@@ -66,13 +71,18 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
                 }]
              }
         })
-        .state('home.group', {
+/*        .state('home.group', {
         	url: '/group',
         	templateUrl: '/app/group/group.html',
         	controller: 'groupController'
+        })*/
+        .state('home.group', {
+            url: '/group/:groupId',
+            templateUrl: 'app/group/group.html',
+            controller: 'groupController'
         })
         .state('home.profile', {
-        	url: '/profile',
+        	url: '/profile/:profileId',
         	templateUrl: '/app/profile/profile.html',
         	controller: 'profileController'
         })

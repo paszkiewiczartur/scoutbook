@@ -1,9 +1,17 @@
 ﻿<div class="col-md-3">
-	<a ui-sref="home.group">Grupa</a>
-	To jest menu nawigacyjne
+	<div ng-if="infoProfile">{{infoProfile}}</div>
+	<div ng-if="infoGroups">{{infoGroups}}</div>
+	<div ng-repeat="groupData in groupsData">
+		{{groupData.name}}<br>
+	</div>
+	Linki:
+	<div ng-repeat="groupData in groupsData">
+		<a ui-sref="home.group({groupId: groupData.id})">{{groupData.name}}</a>	
+	</div>
 </div>
 <div class="col-md-6">
 	Tu są posty znajomych
+	
 </div>
 <div class="col-md-3">
 	Tu są wyświetlane informacje o urodzinach
