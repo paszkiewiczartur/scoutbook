@@ -13,7 +13,12 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import pl.scoutbook.serializer.CustomPostSerializer;
+
 @Entity
+@JsonSerialize(using = CustomPostSerializer.class)
 public class Post {
 	
     @Id
@@ -27,6 +32,12 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "groups_id")
     private Group group;
+    @ManyToOne
+    @JoinColumn(name = "events_id")
+    private Event event;
+    @ManyToOne
+    @JoinColumn(name = "user_profile_id")
+    private UserProfile user_profile;
     @ManyToOne
     @JoinColumn(name = "owner_id")
     private UserProfile owner;
@@ -65,6 +76,23 @@ public class Post {
 
 	public void setGroup(Group group) {
 		this.group = group;
+	}
+
+
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public UserProfile getUser_profile() {
+		return user_profile;
+	}
+
+	public void setUser_profile(UserProfile user_profile) {
+		this.user_profile = user_profile;
 	}
 
 	public UserProfile getOwner() {

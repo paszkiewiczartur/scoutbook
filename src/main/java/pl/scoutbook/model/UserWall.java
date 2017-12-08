@@ -13,15 +13,18 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import pl.scoutbook.serializer.CustomUserWallSerializer;
 
 @Entity
+@JsonSerialize(using = CustomUserWallSerializer.class)
 public class UserWall {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long userProfile;
+    @ManyToOne
+    private UserProfile userProfile;
     @NotNull
-    private Long post;
+    @ManyToOne
+    private Post post;
     @NotNull
     private boolean shown = false;
     
@@ -35,19 +38,19 @@ public class UserWall {
 		this.id = id;
 	}
 
-	public Long getUserProfile() {
+	public UserProfile getUserProfile() {
 		return userProfile;
 	}
 
-	public void setUserProfile(Long userProfile) {
+	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
 
-	public Long getPost() {
+	public Post getPost() {
 		return post;
 	}
 
-	public void setPost(Long post) {
+	public void setPost(Post post) {
 		this.post = post;
 	}
 

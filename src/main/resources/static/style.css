@@ -57,6 +57,9 @@
 	background-color: white;
 	border: solid 5px white;
 }
+#profileMarginTop{
+	margin-top: 50px;
+}
 #registerLogo{
 	width: 300px;
 	height: 300px;

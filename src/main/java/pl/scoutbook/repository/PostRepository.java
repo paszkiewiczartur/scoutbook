@@ -24,10 +24,15 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	    Page<GroupPost> findByGroup(@Param(value = "group") Long group, Pageable pageable);
 	*/
 	@Query(
-	        value = "SELECT * FROM group_post WHERE groups_id = :group ORDER BY ?#{#pageable}",
-	        countQuery = "SELECT count(*) FROM group_post WHERE groups_id = :group ORDER BY ?#{#pageable}",
+	        value = "SELECT * FROM post WHERE groups_id = :group ORDER BY ?#{#pageable}",
+	        countQuery = "SELECT count(*) FROM post WHERE groups_id = :group ORDER BY ?#{#pageable}",
 	        nativeQuery = true)
 	    Page<Post> findByGroup(@Param(value = "group") Long group, Pageable pageable);
+	@Query(
+	        value = "SELECT * FROM post WHERE user_profile_id = :user_profile ORDER BY ?#{#pageable}",
+	        countQuery = "SELECT count(*) FROM post WHERE user_profile_id = :user_profile ORDER BY ?#{#pageable}",
+	        nativeQuery = true)
+	    Page<Post> findByUserWall(@Param(value = "user_profile") Long user_profile, Pageable pageable);
 	
 	//:#{#group}
 }

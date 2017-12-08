@@ -86,5 +86,10 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         	templateUrl: '/app/profile/profile.html',
         	controller: 'profileController'
         })
+        .state('home.event', {
+        	url: '/event/:eventId',
+        	templateUrl: '/app/event/event.html',
+        	controller: 'eventController'
+        })
         ;
 });

@@ -1,7 +1,7 @@
 package pl.scoutbook.model;
 
 public enum PostCategory {
-	USER("UserProfile"), 
+	USERWALL("UserWall"), 
 	GROUP("Group"),
 	EVENT("Event"),
 	FUNPAGE("Funpage");

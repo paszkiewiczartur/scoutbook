@@ -1,17 +1,37 @@
 ﻿<div class="col-md-3">
 	<div ng-if="infoProfile">{{infoProfile}}</div>
 	<div ng-if="infoGroups">{{infoGroups}}</div>
+	<div ng-if="infoEvents">{{infoEvents}}</div>
+	Grupy:<br><br>
 	<div ng-repeat="groupData in groupsData">
-		{{groupData.name}}<br>
+		 <span class="alert alert-success">
+			<span class="glyphicon glyphicon-user"></span>
+			<a ui-sref="home.group({groupId: groupData.id})">{{groupData.name}}</a>	
+		</span><br><br><br>
 	</div>
-	Linki:
-	<div ng-repeat="groupData in groupsData">
-		<a ui-sref="home.group({groupId: groupData.id})">{{groupData.name}}</a>	
+	Wydarzenia:<br><br>
+	<div ng-repeat="eventData in eventsData">
+		<span class="alert alert-success">
+			<span class="glyphicon glyphicon-time"></span>
+			<a ui-sref="home.event({eventId: eventData.content.id})">{{eventData.content.name}}</a>
+		</span><br><br><br>
 	</div>
 </div>
 <div class="col-md-6">
-	Tu są posty znajomych
-	
+	 <span ng-if="userWall.length == 0" class="alert alert-danger">Brak postów do wyświetlenia</span><br>
+	 <span ng-if="userWallError" class="alert alert-danger">{{userWallError}}</span><br>
+<!-- 	<div class="well" ng-repeat="item in userWall">
+		 <button type="button" class="btn btn-success">shown <span class="badge">{{item.content.shown}}</span></button> 
+		 Info: {{item.content.user_profile_id}} {{item.content.post_id}}
+	</div>-->
+	<div class="well" ng-repeat="post in posts">
+    	 Autor: <a ui-sref="home.profile({profileId: post.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.created_at}}</span></button> 
+		 <span ng-if="postsErrors[$index]" class="alert alert-danger">{{postsErrors[$index]}}</span><br>
+		 <span ng-if="ownersErrors[$index]" class="alert alert-danger">{{ownersErrors[$index]}}</span><br>
+		{{post.content}}
+	</div>
+		
 </div>
 <div class="col-md-3">
 	Tu są wyświetlane informacje o urodzinach

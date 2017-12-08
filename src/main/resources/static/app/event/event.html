@@ -1,0 +1,30 @@
+<div class="col-md-3">
+	<a ui-sref="home">Wall</a>
+	To jest menu nawigacyjne
+</div>
+<div class="col-md-6">
+	<span ng-if="infoEvent">{{infoEvent}}</span>
+	<span ng-if="infoPosts">{{infoPosts}}</span>
+	<span ng-if="infoOrganizer">{{infoOrganizer}}</span>
+	<h1>{{eventData.name}}</h1>
+	<div class="well">
+		Organizator: <a ui-sref="home.profile({profileId: eventData.organizer_id})">
+			{{eventData.organizer.firstname}} {{eventData.organizer.lastname}}</a><br>
+		<span class="glyphicon glyphicon-time">{{eventData.start}} - {{eventData.end}}</span><br>
+		<span class="glyphicon glyphicon-map-marker">{{eventData.place}}</span><br><br>
+		Informacje:<br>
+		{{eventData.info}}<br><br>
+	</div>
+	Dyskusja:
+	<div class="well" ng-repeat="post in eventData.posts">
+		 Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 
+		 <span ng-if="profileErrors[$index]" class="alert alert-danger">{{profileErrors[$index]}}</span><br>
+		{{post.content.content}}
+	</div>
+	
+</div>
+<div class="col-md-3">
+	Dodaj członków
+</div>
+

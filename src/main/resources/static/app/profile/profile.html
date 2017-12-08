@@ -1,12 +1,30 @@
 <div class="col-md-1"></div>
 <div class="col-md-8">
 	<div>
-		<img id="backgroundImage" src="{{backgroundImage}}"/>
+		<img id="backgroundImage" class="img-responsive" src="{{profile.backgroundImage}}"/>
 		<div id="profileImageBackground">
-			<img id="profileImage" src="{{profileImage}}"/>
+			<img id="profileImage" class="img-responsive" src="{{profile.profileImage}}"/>
 		</div>
-		<div>
-		
+		<div id="profileMarginTop">
+			<div class="col-md-5">
+				<div class="well">
+					<span ng-if="infoProfile" class="alert alert-danger">{{infoProfile}}</span>
+					<span ng-if="userWallError" class="alert alert-danger">{{userWallError}}</span>
+				
+					<a href="#" class="btn btn-info btn-lg">
+         	 			<span class="glyphicon glyphicon-globe"></span> Prezentacja 
+        			</a><br>
+        		</div>
+			</div>
+			<div class="col-md-7">
+				<div class="well" ng-repeat="post in posts">
+    				Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+					<button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 
+		 			<span ng-if="postsErrors[$index]" class="alert alert-danger">{{postsErrors[$index]}}</span><br>
+		 			<span ng-if="ownersErrors[$index]" class="alert alert-danger">{{ownersErrors[$index]}}</span><br>
+					{{post.content.content}}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
