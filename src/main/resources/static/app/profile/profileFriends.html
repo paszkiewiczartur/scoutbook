@@ -1,0 +1,14 @@
+<div ng-if="infoFriends">{{infoFriends}}</div>
+<div>
+	<a href="#" class="btn btn-info btn-lg">
+    	<span class="glyphicon glyphicon-star-empty"></span> Znajomi
+    </a><br>
+    <div class="col-md-6 well" ng-repeat="friend in friends">
+    	<div class="friendImageBackground col-md-3">
+	    	<img class="friendImage" src="{{friend.profileImage}}" />
+    	</div>
+    	<div class="col-md-9">
+    		{{friend.firstname}} {{friend.lastname}}
+    	</div>
+    </div>
+</div>

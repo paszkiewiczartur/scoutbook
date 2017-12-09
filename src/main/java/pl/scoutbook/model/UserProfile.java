@@ -21,7 +21,6 @@ public class UserProfile {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id_user_profile")
     private Long id;
     @NotNull
     @Column(nullable = false)
@@ -51,6 +50,12 @@ public class UserProfile {
             joinColumns = { @JoinColumn(name = "user_profile_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "events_id", referencedColumnName = "id") })
     private List<Event> events;
+    @ManyToMany
+    @JoinTable(name = "user_friends",
+    		joinColumns = { @JoinColumn(name = "user_profile_id", referencedColumnName = "id") },
+    		inverseJoinColumns = { @JoinColumn(name = "user_friend_id", referencedColumnName = "id") })
+    private List<UserProfile> friends;
+    
     
 	public UserProfile(){}
 

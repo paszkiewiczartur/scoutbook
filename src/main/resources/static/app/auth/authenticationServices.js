@@ -37,7 +37,6 @@ angular.module('scoutbookApp')
         $http.get(usersUrl + profileEmail)
         .then(function(response) {
         	$rootScope.profileId = getId(response.data._links.user.href);
-            console.log($rootScope.profileId);
         }, function(response) {
             $rootScope.infoProfile = "Something went wrong with profile";
         });

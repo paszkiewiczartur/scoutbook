@@ -25,7 +25,7 @@
 		 Info: {{item.content.user_profile_id}} {{item.content.post_id}}
 	</div>-->
 	<div class="well" ng-repeat="post in posts">
-    	 Autor: <a ui-sref="home.profile({profileId: post.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+    	 Autor: <a ui-sref="home.profile.main({profileId: post.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
 		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.created_at}}</span></button> 
 		 <span ng-if="postsErrors[$index]" class="alert alert-danger">{{postsErrors[$index]}}</span><br>
 		 <span ng-if="ownersErrors[$index]" class="alert alert-danger">{{ownersErrors[$index]}}</span><br>

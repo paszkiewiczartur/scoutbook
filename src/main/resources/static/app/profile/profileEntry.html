@@ -1,0 +1,10 @@
+<img id="backgroundImage" class="img-responsive" src="{{profile.backgroundImage}}"/>
+<div id="profileImageBackground">
+	<img id="profileImage" class="img-responsive" src="{{profile.profileImage}}"/>
+</div>
+<div style="margin-left: 300px;">
+	<span ng-if="infoProfile">{{infoProfile}}</span>
+	<a ui-sref="home.profile.main({profileId: profile.id})">Oś czasu</a> 
+	<a ui-sref="home.profile.info({profileId: profile.id})">Informacje</a> 
+	<a ui-sref="home.profile.friends({profileId: profile.id})">Znajomi</a> 		
+</div>

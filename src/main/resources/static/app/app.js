@@ -8,6 +8,8 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
     $urlRouterProvider.otherwise('/register');
 
     $urlRouterProvider.when('/home', '/home/wall');
+
+    //$urlRouterProvider.when('/home/profile/:profileId', '/home/profile/:profileId/main');
     
     $stateProvider.state('admin', {
         url: '/admin',
@@ -47,9 +49,6 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         })
         .state('home', {
         	url: '/home',
-            data: {
-                freeRide: false
-            },
         	views: {
                 '': { templateUrl: '/app/home/home.html' },
                 'nav@home': { 
@@ -81,10 +80,35 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
             templateUrl: 'app/group/group.html',
             controller: 'groupController'
         })
-        .state('home.profile', {
+/*        .state('home.profile', {
         	url: '/profile/:profileId',
         	templateUrl: '/app/profile/profile.html',
         	controller: 'profileController'
+        })*/
+        .state('home.profile', {
+        	url: '/profile/:profileId',
+        	views: {
+                '': { templateUrl: '/app/profile/profile.html' },
+                'entry@home.profile': { 
+                    templateUrl: '/app/profile/profileEntry.html',
+                    controller: 'profileEntryController'
+                }
+        	}
+        })
+        .state('home.profile.main', {
+        	url: '/main',
+        	templateUrl: '/app/profile/profileMain.html',
+        	controller: 'profileMainController'
+        })
+        .state('home.profile.friends', {
+        	url: '/friends',
+        	templateUrl: '/app/profile/profileFriends.html',
+        	controller: 'profileFriendsController'
+        })
+        .state('home.profile.info', {
+        	url: '/info',
+        	templateUrl: '/app/profile/profileInfo.html',
+        	controller: 'profileInfoController'
         })
         .state('home.event', {
         	url: '/event/:eventId',
