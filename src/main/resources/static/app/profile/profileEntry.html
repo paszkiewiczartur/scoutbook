@@ -2,9 +2,9 @@
 <div id="profileImageBackground">
 	<img id="profileImage" class="img-responsive" src="{{profile.profileImage}}"/>
 </div>
-<div style="margin-left: 300px;">
+<div class="well">
 	<span ng-if="infoProfile">{{infoProfile}}</span>
-	<a ui-sref="home.profile.main({profileId: profile.id})">Oś czasu</a> 
-	<a ui-sref="home.profile.info({profileId: profile.id})">Informacje</a> 
-	<a ui-sref="home.profile.friends({profileId: profile.id})">Znajomi</a> 		
+	<a  style="margin-left: 300px;" ui-sref="home.profile.main({profileId: profile.id})" class="btn btn-info btn-md">Oś czasu</a> 
+	<a ui-sref="home.profile.info({profileId: profile.id})" class="btn btn-info btn-md">Informacje</a> 
+	<a ui-sref="home.profile.friends({profileId: profile.id})" class="btn btn-info btn-md">Znajomi</a> 		
 </div>

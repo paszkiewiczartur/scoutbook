@@ -9,14 +9,10 @@ angular.module('scoutbookApp')
 		$http
 		.post(LOGIN_ENDPOINT, {}, config)
 		.then(function success(value) {
-			console.log("successValue:" + value);
-			console.log("autoryzacja " + authHeader.Authorization);
 			var response = angular.copy(value);
-			console.log(response);
 			$http.defaults.headers.post.Authorization = authHeader.Authorization;
 			$rootScope.authenticated = true;
-			authenticated = true;
-			
+			authenticated = true;			
 			$state.go("home");
 		}, function error(reason) {
 			console.log('Login error');

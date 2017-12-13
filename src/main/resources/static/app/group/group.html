@@ -5,8 +5,18 @@
 <div class="col-md-6">
 	<div ng-if="info">{{info}}</div>
 	Tu jest informacja o grupie<br>
-	Grupa {{groupData.name}}<br>
+	Grupa {{groupData.name}}<br><br>
 	
+	<div class="well">
+		<form name="newPost">
+			<span class="alert alert-info">Utwórz post</span>
+			<button type="submit" class="pull-right btn btn-success" 
+				ng-disabled="newPost.$invalid" ng-click="sendNewPost()">
+				Opublikuj
+			</button> <br>
+			<textarea rows="4" cols="50" required ng-model="newPostText" class="form-control"></textarea><br>
+		</form>
+	</div>
 	<div class="well" ng-repeat="post in groupData.posts">
 		 Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
 		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 

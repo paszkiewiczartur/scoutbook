@@ -28,6 +28,7 @@ insert into post(content, created_at, groups_id, owner_id, category) VALUES("Cze
 insert into post(content, created_at, user_profile_id, owner_id, category) VALUES("Kto ma do pożyczenia czołówkę?", "2017-12-03 13:12:11", 1, 1, 0);
 insert into post(content, created_at, user_profile_id, owner_id, category) VALUES("Zna ktoś ciekawe miejsce na złożenie przysięgi?", "2017-12-03 13:12:11", 1, 1, 0);
 insert into post(content, created_at, user_profile_id, owner_id, category) VALUES("Wszystkiego najlepszego z okazji urodzin!", "2017-11-03 13:12:11", 1, 2, 0);
+insert into post(content, created_at, user_profile_id, owner_id, category) VALUES("Stówa Michał!", "2017-11-03 9:10:11", 1, 4, 0);
 insert into groups(name) VALUES("scout group London");
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("This is our first post", "2017-12-02 14:13:12", 2, 3, 1);
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("This is our second post", "2017-12-02 15:14:13", 2, 3, 1);
@@ -38,6 +39,8 @@ insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 2, false);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 3, false);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 4, false);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 5, false);
+insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 6, false);
+insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 7, false);
 insert into events(organizer_id, name, place, start, end, info) VALUES(2, "Światełko do nieba", "Białystok", "2017-12-17 12:00:00", "2017-12-17 13:00:00", "Zapraszamy wszystkich!");
 insert into user_events(user_profile_id, events_id) VALUES(2, 1);
 insert into user_events(user_profile_id, events_id) VALUES(1, 1);

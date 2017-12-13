@@ -24,6 +24,7 @@ public class ResponseRegisterValidation {
 		String code = tab[1].trim();
 		tab = code.substring(7, code.length()-1).split(",");
 		code = tab[tab.length-1];
+		System.out.println("code:" + code);
 		return code;
 	}
 

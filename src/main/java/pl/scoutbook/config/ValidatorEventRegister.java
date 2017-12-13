@@ -40,5 +40,7 @@ public class ValidatorEventRegister implements InitializingBean {
             .findFirst()
             .ifPresent(p -> System.out.println("value:" + entry.getValue() + ", key:" + entry.getKey()));
         }
+        
+        System.out.println(validatingRepositoryEventListener.toString());
     }
 }

@@ -3,7 +3,8 @@ angular.module('scoutbookApp')
 .constant("postsUrl", "http://localhost:8080/api/posts/")
 .constant("userWallUrl", "http://localhost:8080/api/userWall/search/findByUser?user=")
 .constant("pageSize", 3)
-.controller('wallController', function($rootScope, $scope, $http, $q, profileGroupsUrl, userWallUrl, postsUrl, pageSize) {
+.constant("postListActiveClass", "btn-primary")
+.controller('wallController', function($rootScope, $scope, $http, $q, profileGroupsUrl, userWallUrl, postsUrl, pageSize, postListActiveClass) {
 
 	$scope.loadPosts = function(){
 		var promises = [];
@@ -70,5 +71,39 @@ angular.module('scoutbookApp')
 		$scope.loadNextUserWallPosts(0, false);
 	})();
 
+    $scope.selectedPage = 0;
+    
+    $scope.nextPage = function(){
+    	$scope.selectedPage = $scope.selectedPage + 1;
+    	$scope.loadNextUserWallPosts($scope.selectedPage, false);
+    };
 
+    $scope.previousPage = function(){
+    	$scope.selectedPage = $scope.selectedPage - 1;
+    	$scope.loadNextUserWallPosts($scope.selectedPage, false);
+    };
+    
+    $scope.newPostText = "";
+    
+    $scope.sendNewPost = function(){
+    	if($scope.newPostText != "" && $scope.newPostText != null){
+    		var post = {};
+    		post.content = $scope.newPostText;
+        	post.owner_id = Number($rootScope.profileId);
+        	post.category = "USERWALL";
+        	post.user_profile_id = Number($rootScope.profileId);
+            $http({
+                method : 'POST',
+                url : postsUrl,
+                data : post
+            }).then(function(response) {
+                console.log(response.data);
+                $scope.newPostText = "";
+                $scope.loadNextUserWallPosts(0, false);
+            }, function(response) {
+            	console.log(response.data);
+            });
+    	}
+    };
+    
 });

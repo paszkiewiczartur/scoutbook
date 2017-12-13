@@ -2,6 +2,7 @@ package pl.scoutbook.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,12 +14,15 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import pl.scoutbook.serializer.CustomPostDeserializer;
 import pl.scoutbook.serializer.CustomPostSerializer;
 
 @Entity
 @JsonSerialize(using = CustomPostSerializer.class)
+@JsonDeserialize(using = CustomPostDeserializer.class)
 public class Post {
 	
     @Id
@@ -27,7 +31,7 @@ public class Post {
     @NotNull
     @Size(max = 1000)
     private String content;
-    @NotNull 
+    @Column(nullable = false)
     LocalDateTime createdAt = LocalDateTime.now();
     @ManyToOne
     @JoinColumn(name = "groups_id")
@@ -45,6 +49,25 @@ public class Post {
     private PostCategory category;
     
     public Post(){}
+
+    public Post(String content, UserProfile user_profile, UserProfile owner, PostCategory category){
+    	this.content = content;
+    	this.user_profile = user_profile;
+    	this.owner = owner;
+    	this.category = category;
+    }
+    public Post(String content, Group group, UserProfile owner, PostCategory category){
+    	this.content = content;
+    	this.group = group;
+    	this.owner = owner;
+    	this.category = category;
+    }
+    public Post(String content, Event event, UserProfile owner, PostCategory category){
+    	this.content = content;
+    	this.event = event;
+    	this.owner = owner;
+    	this.category = category;
+    }
 
 	public Long getId() {
 		return id;

@@ -12,10 +12,24 @@
         </div>		
 </div>
 <div class="col-md-7">
+	<div class="well">
+		<form name="newPost">
+			<span class="alert alert-info">Utwórz post</span>
+			<button type="submit" class="pull-right btn btn-success" 
+				ng-disabled="newPost.$invalid" ng-click="sendNewPost()">
+				Opublikuj
+			</button><br>
+			<textarea rows="4" cols="50" required ng-model="newPostText" class="form-control"></textarea><br>
+		</form>
+	</div>
 	<div class="well" ng-repeat="post in posts">
     	Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
 		<button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 
 		 <span ng-if="ownersErrors[$index]" class="alert alert-danger">{{ownersErrors[$index]}}</span><br>
 		{{post.content.content}}
+	</div>
+	<div class="pull-right btn-group">
+    	<a ng-if="selectedPage != 0" ng-click="previousPage()" class="btn btn-success">Poprzednie posty</a>
+    	<a ng-if="posts.length != 0" ng-click="nextPage()" class="btn btn-success">Następne posty</a>
 	</div>
 </div>

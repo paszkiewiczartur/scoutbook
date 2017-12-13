@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import pl.scoutbook.config.ResponseRegisterValidation;
 import pl.scoutbook.model.Errors;
 
-//@EnableWebMvc
+
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -27,7 +27,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 	
     @ExceptionHandler({ RepositoryConstraintViolationException.class })
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(
+    public ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex,
             HttpHeaders headers,
             HttpStatus status,
@@ -43,4 +43,25 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<Object>(responseErrors, headers, HttpStatus.NOT_ACCEPTABLE);
     }
     
+	
+    /*@ExceptionHandler({ RepositoryConstraintViolationException.class })
+    public ResponseEntity<Errors> handleAccessDeniedException(
+      Exception ex, WebRequest request) {
+
+    	RepositoryConstraintViolationException nevEx = 
+            (RepositoryConstraintViolationException) ex;
+          String errors = nevEx.getErrors().getAllErrors().stream()
+            .map(p -> p.toString()).collect(Collectors.joining("\n"));
+           
+    	  Set<String> errors2 = nevEx.getErrors()
+    			.getAllErrors()
+    			.stream()
+    			.map(p -> p.toString())
+    			.collect(Collectors.toSet());
+    	  
+    	  Errors jsonErrors = responseRegisterValidation.makeRegisterResponse(errors2);
+    	 
+    	return new ResponseEntity<Errors>(jsonErrors, new HttpHeaders(),
+            HttpStatus.NOT_ACCEPTABLE);
+    }*/
 }

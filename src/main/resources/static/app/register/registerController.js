@@ -32,7 +32,6 @@
         $http.post(registerUrl, data)
           .then(
             function (successData) {
-            	console.log(successData);
             	$scope.successRegister = true;
             	$scope.birthday = {};
             	$scope.registerData = {};              

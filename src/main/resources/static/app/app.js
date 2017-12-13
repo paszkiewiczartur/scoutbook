@@ -2,7 +2,6 @@
 
 var scoutbookApp = angular.module('scoutbookApp', ['ui.router', 'ngResource']);
 var authenticated = false;
-console.log('module created');
 scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $urlRouterProvider.otherwise('/register');

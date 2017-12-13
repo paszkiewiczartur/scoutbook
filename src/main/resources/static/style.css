@@ -18,8 +18,6 @@
 .friendImage{
 	height: 120px;
 	width: 120px;
-}
-.friendImageBackground{
 	background-color: white;
 	border: solid 5px white;
 }
