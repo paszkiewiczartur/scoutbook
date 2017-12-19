@@ -4,8 +4,14 @@
 </div>
 <div class="col-md-6">
 	<div ng-if="info">{{info}}</div>
-	Tu jest informacja o grupie<br>
-	Grupa {{groupData.name}}<br><br>
+	<div ng-if="infoGroup">{{infoGroup}}</div>
+	<div ng-if="infoUsers">{{infoUsers}}</div>
+	<div ng-if="infoFriends">{{infoFriends}}</div>
+	<div ng-if="group.image">
+		<img src="{{group.image}}" class="groupImage img-responsive"/>
+	</div><br>
+	<br>
+	<h1>Grupa: {{group.name}}</h1><br><br>
 	
 	<div class="well">
 		<form name="newPost">
@@ -18,14 +24,23 @@
 		</form>
 	</div>
 	<div class="well" ng-repeat="post in groupData.posts">
-		 Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+		 Autor: <a ui-sref="home.profile.main({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
 		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 
 		 <span ng-if="profileErrors[$index]" class="alert alert-danger">{{profileErrors[$index]}}</span><br>
 		{{post.content.content}}
 	</div>
 	
 </div>
-<div class="col-md-3">
-	Dodaj członków
+<div class="col-md-3 well">
+	Dodaj członków:<br>
+	<div class="search-container">
+      <input type="text" ng-model="search" placeholder="Search.." name="search" class="form-control">
+  	</div>
+	<div ng-repeat="friend in friends | filter:search" class="well">
+		<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+		{{friend.firstname}} {{friend.lastname}}
+		<button ng-if="!friend.isMember" class="btn btn-md btn-success pull-right" ng-click="addMember(friend)">Dodaj członka</button>
+		<button ng-if="friend.isMember" class="btn btn-md btn-info pull-right">Jest członkiem</button>
+	</div>
 </div>
 

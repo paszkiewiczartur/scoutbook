@@ -22,6 +22,7 @@ public class Group {
     private Long id;
     @NotNull
     private String name;
+    private String image;
     @OneToMany(mappedBy = "group")
     private List<Post> posts;
     @ManyToMany(mappedBy = "groups")
@@ -45,12 +46,28 @@ public class Group {
 		this.name = name;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public List<Post> getPosts() {
 		return posts;
 	}
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public List<UserProfile> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<UserProfile> users) {
+		this.users = users;
 	}
     
     

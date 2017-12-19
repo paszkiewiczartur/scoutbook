@@ -48,7 +48,7 @@ public class PostValidator implements Validator {
     	int categories = 0;
     	if(Optional.ofNullable(post.getEvent()).isPresent()) categories++;
     	if(Optional.ofNullable(post.getGroup()).isPresent()) categories++;
-    	if(Optional.ofNullable(post.getUser_profile()).isPresent()) categories++;
+    	if(Optional.ofNullable(post.getUserProfile()).isPresent()) categories++;
     	if(categories > 1) valid = true;
     	return valid;
     }

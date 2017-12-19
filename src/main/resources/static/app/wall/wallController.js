@@ -106,4 +106,21 @@ angular.module('scoutbookApp')
     	}
     };
     
+    $scope.newGroup = {};
+    $scope.createGroup = function(){
+    	
+    };
+    
+    var newGroupWindow = document.getElementById('myModal');
+ 	$scope.openNewGroup = function(){
+ 		newGroupWindow.style.display = "block";
+ 	};
+
+ 	var span = document.getElementsByClassName("close")[0];
+
+ 	span.onclick = function() { 
+     	newGroupWindow.style.display = "none";
+     	$scope.newGroup = {};
+ 	};
+    
 });

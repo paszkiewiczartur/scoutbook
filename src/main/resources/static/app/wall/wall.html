@@ -16,6 +16,9 @@
 			<a ui-sref="home.event({eventId: eventData.content.id})">{{eventData.content.name}}</a>
 		</span><br><br><br>
 	</div>
+	Utwórz:<br>
+	<button class="btn btn-success btn-md" ng-click="openNewGroup()">Grupę </button>
+	<button class="btn btn-success btn-md" ng-click="openNewEvent()">Wydarzenie </button>
 </div>
 <div class="col-md-6">
 	<div class="well">
@@ -44,5 +47,15 @@
 </div>
 <div class="col-md-3">
 	Tu są wyświetlane informacje o urodzinach
+</div>
+<div id="myModal" class="modal">
+  <span class="close">×</span>
+    <div class="modal-content well">
+        <h2>Utwórz grupę</h2>
+		Nazwa: <input type="text" class="form-control" ng-model="newGroup.name" /><br>
+		Link do tła (opcjonalnie): <input type="text" class="form-control" ng-model="newGroup.image" />
+		<img src="{{newGroup.image}}" style="height:200px; width:600px; margin:auto;"><br>
+		<button class="btn btn-lg btn-success" ng-click="createGroup()">Utwórz</button>
+    </div>
 </div>
 

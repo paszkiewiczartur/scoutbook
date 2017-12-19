@@ -140,4 +140,12 @@ public class UserProfile {
 		this.events = events;
 	}
 
+	public List<UserProfile> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<UserProfile> friends) {
+		this.friends = friends;
+	}
+
 }

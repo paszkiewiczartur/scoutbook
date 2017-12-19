@@ -27,7 +27,7 @@
 		</form>
 	</div>
 	<div class="well" ng-repeat="post in eventData.posts">
-		 Autor: <a ui-sref="home.profile({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
+		 Autor: <a ui-sref="home.profile.main({profileId: post.content.owner_id})">{{post.owner.firstname}} {{post.owner.lastname}}</a>
 		 <button type="button" class="btn btn-success pull-right">Data <span class="badge">{{post.content.created_at}}</span></button> 
 		 <span ng-if="profileErrors[$index]" class="alert alert-danger">{{profileErrors[$index]}}</span><br>
 		{{post.content.content}}

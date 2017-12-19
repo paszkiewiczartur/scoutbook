@@ -110,11 +110,11 @@ public class Post {
 		this.event = event;
 	}
 
-	public UserProfile getUser_profile() {
+	public UserProfile getUserProfile() {
 		return user_profile;
 	}
 
-	public void setUser_profile(UserProfile user_profile) {
+	public void setUserProfile(UserProfile user_profile) {
 		this.user_profile = user_profile;
 	}
 

@@ -21,7 +21,7 @@ insert into user_friends(user_profile_id, user_friend_id) VALUES(2, 1);
 insert into user_friends(user_profile_id, user_friend_id) VALUES(4, 3);
 insert into user_friends(user_profile_id, user_friend_id) VALUES(3, 4);
 
-insert into groups(name) VALUES("hufiec Białystok");
+insert into groups(name, image) VALUES("hufiec Białystok", "https://zgloszenia24.pl/uploads/users/143/5847b9aa966d7419ad90658f894f07e3.jpg");
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("To jest nasz pierwszy post", "2017-12-01 12:11:10", 1, 2, 1);
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("To jest nasz drugi post", "2017-12-01 13:12:11", 1, 2, 1);
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("Cześć! Jestem nowy w drużynie.", "2017-12-01 13:12:11", 1, 1, 1);
@@ -34,6 +34,9 @@ insert into post(content, created_at, groups_id, owner_id, category) VALUES("Thi
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("This is our second post", "2017-12-02 15:14:13", 2, 3, 1);
 insert into user_groups(user_profile_id, groups_id) VALUES(1, 1);
 insert into user_groups(user_profile_id, groups_id) VALUES(1, 2);
+insert into user_groups(user_profile_id, groups_id) VALUES(2, 1);
+insert into user_groups(user_profile_id, groups_id) VALUES(3, 2);
+insert into user_groups(user_profile_id, groups_id) VALUES(4, 1);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 1, false);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 2, false);
 insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 3, false);
@@ -44,5 +47,6 @@ insert into user_wall(user_profile_id, post_id, shown) VALUES(1, 7, false);
 insert into events(organizer_id, name, place, start, end, info) VALUES(2, "Światełko do nieba", "Białystok", "2017-12-17 12:00:00", "2017-12-17 13:00:00", "Zapraszamy wszystkich!");
 insert into user_events(user_profile_id, events_id) VALUES(2, 1);
 insert into user_events(user_profile_id, events_id) VALUES(1, 1);
+insert into user_events(user_profile_id, events_id) VALUES(4, 1);
 insert into post(content, created_at, events_id, owner_id, category) VALUES("Proszę być punktualnie.", "2017-12-01 13:12:11", 1, 2, 2);
 insert into post(content, created_at, events_id, owner_id, category) VALUES("Czy mogę przyjść z rodzicami?", "2017-12-01 13:12:11", 1, 1, 2);
