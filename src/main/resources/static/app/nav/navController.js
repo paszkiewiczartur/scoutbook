@@ -10,8 +10,6 @@
         $http.get(profileUrl + $rootScope.profileId)
         .then(function(response) {
             $rootScope.name = response.data.firstname + " " + response.data.lastname;
-            console.log("$rootScope.name");
-            console.log($rootScope.name);
         }, function(response) {
         	console.log("could not get name");
             $scope.infoProfile = "Something went wrong with profile";

@@ -2,9 +2,11 @@ angular.module('scoutbookApp')
 .constant("profileGroupsUrl", "http://localhost:8080/api/userProfiles/")
 .constant("postsUrl", "http://localhost:8080/api/posts/")
 .constant("userWallUrl", "http://localhost:8080/api/userWall/search/findByUser?user=")
+.constant("newEventUrl", "http://localhost:8080/api/events")
+.constant("newGroupUrl", "http://localhost:8080/api/groups")
 .constant("pageSize", 3)
-.constant("postListActiveClass", "btn-primary")
-.controller('wallController', function($rootScope, $scope, $http, $q, profileGroupsUrl, userWallUrl, postsUrl, pageSize, postListActiveClass) {
+.controller('wallController', function($rootScope, $scope, $http, $q, $state,
+		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, pageSize, AddMemberService) {
 
 	$scope.loadPosts = function(){
 		var promises = [];
@@ -107,20 +109,107 @@ angular.module('scoutbookApp')
     };
     
     $scope.newGroup = {};
-    $scope.createGroup = function(){
-    	
-    };
-    
-    var newGroupWindow = document.getElementById('myModal');
+    var newGroupWindow = document.getElementById('newGroup');
  	$scope.openNewGroup = function(){
  		newGroupWindow.style.display = "block";
  	};
-
- 	var span = document.getElementsByClassName("close")[0];
-
- 	span.onclick = function() { 
+    $scope.createGroup = function(){
+    	var group = {};
+    	group.name = $scope.newGroup.name;
+    	if($scope.newGroup.image != null && $scope.newGroup.image != "")
+    		group.image = $scope.newGroup.image;
+    	console.log(group);
+ 		$http({
+            method : 'POST',
+            url : newGroupUrl,
+            data : group
+        }).then(function(response) {
+        	$scope.newEvent = {};
+         	newGroupWindow.style.display = "none";
+         	AddMemberService.addGroupMember($rootScope.profileId, response.data.id);
+			$state.go("home.group", {groupId: response.data.id});
+        }, function(response) {
+        	console.log(response.data);
+        	$scope.newGroup = {};
+        	$scope.newGroup.error = "Something went wrong. Try again later.";
+        });
+    };
+ 	var closeGroupSpan = document.getElementById("closeGroup");
+ 	closeGroupSpan.onclick = function() { 
      	newGroupWindow.style.display = "none";
      	$scope.newGroup = {};
  	};
     
+ 	$scope.newEvent = {};
+ 	var newEventWindow = document.getElementById("newEvent");
+ 	$scope.openNewEvent = function(){
+ 		newEventWindow.style.display = "block";
+ 	};
+ 	var closeEventSpan = document.getElementById("closeEvent");
+ 	closeEventSpan.onclick = function() { 
+     	newEventWindow.style.display = "none";
+     	$scope.newEvent = {};
+ 	};
+ 	$scope.createEvent = function(){
+ 		var event = prepareEvent();
+ 		$http({
+            method : 'POST',
+            url : newEventUrl,
+            data : event
+        }).then(function(response) {
+        	$scope.newEvent = {};
+         	newEventWindow.style.display = "none";
+         	AddMemberService.addEventMember($rootScope.profileId, response.data.id);
+			$state.go("home.event", {eventId: response.data.id});
+        }, function(response) {
+        	$scope.newEvent = {};
+        	$scope.newEvent.error = "Something went wrong. Try again later.";
+        });
+ 	};
+
+ 	var prepareEvent = function(){
+ 		var event = {};
+ 		event.organizer = Number($rootScope.profileId);
+ 		event.name = $scope.newEvent.name;
+ 		event.place = $scope.newEvent.place;
+ 		if($scope.newEvent.info != null && $scope.newEvent.info != "")
+ 			event.info = $scope.newEvent.info;
+ 		event.start = prepareDateTime("start");
+ 		event.end = prepareDateTime("end");
+ 		if($scope.newEvent.image != null && $scope.newEvent.image != "")
+ 			event.image = $scope.newEvent.image;
+ 		return event;
+ 	};
+ 	
+ 	var prepareDateTime = function(startEnd){
+ 		var result = "";
+ 		var date;
+ 		var time;
+ 		if(startEnd == "start"){
+ 			date = $scope.newEvent.startDate;
+ 			time = $scope.newEvent.startTime;
+ 		} else if(startEnd == "end"){
+ 			date = $scope.newEvent.endDate;
+ 			time = $scope.newEvent.endTime;
+ 		} else{
+ 			return null;
+ 		}
+ 		result += date.getFullYear();
+ 		result += "-";
+ 		if(date.getMonth() + 1 < 10) result += "0";
+ 		result += (date.getMonth() + 1);
+ 		result += "-";
+ 		if(date.getDate() < 10) result += "0";
+ 		result += date.getDate();
+ 		result += "T";
+ 		if(time.getHours() < 10) result += "0";
+ 		result += time.getHours();
+ 		result += ":";
+ 		if(time.getMinutes() < 10) result += "0";
+ 		result += time.getMinutes();
+ 		result += ":";
+ 		result += "00";
+ 		return result;
+ 	};
+ 	
 });

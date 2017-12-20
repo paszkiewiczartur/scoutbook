@@ -13,7 +13,7 @@
 	<div ng-repeat="eventData in eventsData">
 		<span class="alert alert-success">
 			<span class="glyphicon glyphicon-time"></span>
-			<a ui-sref="home.event({eventId: eventData.content.id})">{{eventData.content.name}}</a>
+			<a ui-sref="home.event({eventId: eventData.id})">{{eventData.name}}</a>
 		</span><br><br><br>
 	</div>
 	Utwórz:<br>
@@ -48,14 +48,36 @@
 <div class="col-md-3">
 	Tu są wyświetlane informacje o urodzinach
 </div>
-<div id="myModal" class="modal">
-  <span class="close">×</span>
+<div id="newGroup" class="modal">
+  <span class="close" id="closeGroup">×</span>
     <div class="modal-content well">
+	<form name="newGroup">
+		<span class="alert alert-danger" ng-if="newGroup.error">{{newGroup.error}}<br></span>
         <h2>Utwórz grupę</h2>
-		Nazwa: <input type="text" class="form-control" ng-model="newGroup.name" /><br>
+		Nazwa: <input type="text" class="form-control" ng-model="newGroup.name" required/><br>
 		Link do tła (opcjonalnie): <input type="text" class="form-control" ng-model="newGroup.image" />
 		<img src="{{newGroup.image}}" style="height:200px; width:600px; margin:auto;"><br>
-		<button class="btn btn-lg btn-success" ng-click="createGroup()">Utwórz</button>
+		<button class="btn btn-lg btn-success" ng-click="createGroup()" ng-disabled="newGroup.$invalid">Utwórz</button>
+	</form>
+    </div>
+</div>
+<div id="newEvent" class="modal">
+  <span class="close" id="closeEvent">×</span>
+    <div class="modal-content well">
+	<form name="newEvent">
+		<span class="alert alert-danger" ng-if="newEvent.error">{{newEvent.error}}<br></span>
+        <h2>Utwórz wydarzenie</h2>
+		Nazwa: <input type="text" class="form-control" ng-model="newEvent.name" required/><br>
+		Miejsce: <input type="text" class="form-control" ng-model="newEvent.place" required/><br>
+		Czas rozpoczęcia: <input type="date" class="form-inline" ng-model="newEvent.startDate" required/>
+			<input type="time" class="form-inline" ng-model="newEvent.startTime" required /><br>
+		Czas zakończenia: <input type="date" class="form-inline" ng-model="newEvent.endDate" required/>
+			<input type="time" class="form-inline" ng-model="newEvent.endTime" required /><br>
+		Informacje (opcjonalnie): <textarea cols="50" rows="4" class="form-control" ng-model="newEvent.info"/><br>
+		Link do tła (opcjonalnie): <input type="text" class="form-control" ng-model="newEvent.image" />
+		<img src="{{newEvent.image}}" style="height:200px; width:600px; margin:auto;"><br>
+		<button class="btn btn-lg btn-success" ng-click="createEvent()" ng-disabled="newEvent.$invalid">Utwórz</button>
+	</form>
     </div>
 </div>
 

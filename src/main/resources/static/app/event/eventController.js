@@ -1,6 +1,7 @@
 angular.module('scoutbookApp')
 .constant("eventsUrl", "http://localhost:8080/api/events/")
-.controller('eventController', function($rootScope, $scope, $http, $stateParams, eventsUrl, pageSize, postsUrl) {
+.controller('eventController', function($rootScope, $scope, $http, $stateParams, $q,
+		profileUrl, eventsUrl, pageSize, postsUrl, AddMemberService) {
 		
 	var loadPosts = function(){
         $http.get(eventsUrl + $stateParams.eventId + "/posts")
@@ -28,7 +29,7 @@ angular.module('scoutbookApp')
 			.then(function(response){
 				post.owner = response.data;
 			}, function(response){
-				$scope.profileErrors.push("Wystąpił błąd");
+				$scope.profileErrors.push("There is an error.");
 			});			
 		});
 	};
@@ -56,16 +57,65 @@ angular.module('scoutbookApp')
     	}
     };
 
+
+	var loadUsers = function(){
+		var promise = $http.get(eventsUrl + $stateParams.eventId + "/users")
+		.then(function(response){
+			$scope.users = response.data._embedded.userProfiles;
+		}, function(response){
+			$scope.infoUsers = "Something went wrong with event."
+		});
+		return promise;
+	};
+
+	var loadFriends = function(){
+		var promise = $http.get(profileUrl + $rootScope.profileId + "/friends")
+		.then(function(response){
+			$scope.friends = response.data._embedded.userProfiles;
+		}, function(response){
+			$scope.infoFriends = "Failed to load observer friends";
+		});			
+		return promise;
+	};
+
+	var compareFriendsAndUsers = function(){
+    	angular.forEach($scope.friends, function(friend){
+    		angular.forEach($scope.users, function(user){
+    			if(friend.id == user.id){
+    				friend.isMember = true;
+    			}
+    		});
+    	});
+    };
+    
     (function () {
         $http.get(eventsUrl + $stateParams.eventId)
         .then(function(response) {
-            $scope.eventData = response.data.content;
+            $scope.eventData = response.data;
             loadOrganizer();
             loadPosts();
+    		var promises = [];
+    		promises.push(loadUsers());
+    		promises.push(loadFriends());
+    		$q.all(promises).then(function(response){
+    			compareFriendsAndUsers();
+    		}, function (error){	
+    			console.log("Couldn't compare users and friends.");
+    		});
+
         }, function(response) {
             $scope.infoEvent = "Something went wrong with event";
         });		
     })();
+	
+    $scope.addMember = function(friend){
+    	var promise = AddMemberService.addEventMember(friend.id, $stateParams.eventId);
+    	promise.then(function(response){
+    		friend.isMember = true;
+    	}, function(response){
+    		console.log("Couldn't add member.");
+    	});
+    };
 	
 	
 });

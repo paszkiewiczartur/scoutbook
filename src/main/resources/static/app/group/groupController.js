@@ -1,8 +1,7 @@
 angular.module('scoutbookApp')
 .constant("groupUrl", "http://localhost:8080/api/groups/")
-.constant("addGroupMember", "http://localhost:8080/api/groups/addMember")
 .controller('groupController', function($rootScope, $scope, $http, $stateParams, $q, 
-		groupUrl, postsUrl, profileUrl, addGroupMember) {
+		groupUrl, postsUrl, profileUrl, AddMemberService) {
 
 	var loadPosts = function(){
         $http.get(groupUrl + $stateParams.groupId + "/posts")
@@ -103,19 +102,12 @@ angular.module('scoutbookApp')
     };
     
     $scope.addMember = function(friend){
-    	var member = {};
-    	member.memberId = friend.id;
-    	member.groupOrEventId = $stateParams.groupId;
-        $http({
-            method : 'POST',
-            url : addGroupMember,
-            data : member
-        }).then(function(response) {
-        	friend.isMember = true;
-            console.log(response.data);
-        }, function(response) {
-        	console.log("Couldn't add new member");
-        });
-    }
+    	var promise = AddMemberService.addGroupMember(friend.id, $stateParams.groupId);
+    	promise.then(function(response){
+    		friend.isMember = true;
+    	}, function(response){
+    		console.log("Couldn't add member.");
+    	});
+    };
 	
 });

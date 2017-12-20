@@ -4,19 +4,18 @@ angular.module('scoutbookApp')
 .service('AuthenticationService', function($http, LOGIN_ENDPOINT, $rootScope, $state, usersUrl) {
 	this.authenticate = function(credentials) {
 		prepareProfileId(credentials);
-	}
+	};
 	this.logout = function() {
 		delete $http.defaults.headers.post.Authorization;
 		$rootScope.authenticated = false;
 		authenticated = false;
 		$state.go("register");
-	}
+	};
 
 	var prepareProfileId = function (credentials) {
         $http.get(usersUrl + credentials.email)
         .then(function(response) {
         	$rootScope.profileId = getId(response.data._links.user.href);
-        	console.log($rootScope.profileId);
         	authorize(credentials);
         }, function(response) {
             $rootScope.infoProfile = "Something went wrong with profile";
@@ -47,5 +46,5 @@ angular.module('scoutbookApp')
 			$rootScope.credentials = {};
 			$state.go("failedLogin");
 		});
-	}
+	};
 });

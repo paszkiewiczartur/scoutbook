@@ -2,12 +2,11 @@ package pl.scoutbook.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
-import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
+import pl.scoutbook.model.Event;
 import pl.scoutbook.model.Group;
 import pl.scoutbook.model.UserProfile;
-import pl.scoutbook.validation.PostValidator;
 
 @Configuration
 public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
@@ -15,6 +14,7 @@ public class RepositoryConfig extends RepositoryRestConfigurerAdapter {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         config.exposeIdsFor(Group.class);
         config.exposeIdsFor(UserProfile.class);
+        config.exposeIdsFor(Event.class);
     }
    /* @Override
     public void configureValidatingRepositoryEventListener(

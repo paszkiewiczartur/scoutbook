@@ -3,9 +3,11 @@
 	To jest menu nawigacyjne
 </div>
 <div class="col-md-6">
-	<span ng-if="infoEvent">{{infoEvent}}</span>
-	<span ng-if="infoPosts">{{infoPosts}}</span>
-	<span ng-if="infoOrganizer">{{infoOrganizer}}</span>
+	<span ng-if="infoUsers" class="alert alert-danger">{{infoUsers}}</span>
+	<span ng-if="infoFriends" class="alert alert-danger">{{infoFriends}}</span>
+	<span ng-if="infoEvent" class="alert alert-danger">{{infoEvent}}</span>
+	<span ng-if="infoPosts" class="alert alert-danger">{{infoPosts}}</span>
+	<span ng-if="infoOrganizer" class="alert alert-danger">{{infoOrganizer}}</span>
 	<h1>{{eventData.name}}</h1>
 	<div class="well">
 		Organizator: <a ui-sref="home.profile({profileId: eventData.organizer_id})">
@@ -34,7 +36,15 @@
 	</div>
 	
 </div>
-<div class="col-md-3">
-	Dodaj członków
+<div class="col-md-3 well">
+	Dodaj członków:<br>
+	<div class="search-container">
+      <input type="text" ng-model="search" placeholder="Search.." name="search" class="form-control">
+  	</div>
+	<div ng-repeat="friend in friends | filter:search" class="well">
+		<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+		{{friend.firstname}} {{friend.lastname}}
+		<button ng-if="!friend.isMember" class="btn btn-md btn-success pull-right" ng-click="addMember(friend)">Dodaj członka</button>
+		<button ng-if="friend.isMember" class="btn btn-md btn-info pull-right">Jest członkiem</button>
+	</div>
 </div>
-

@@ -21,6 +21,9 @@
 	background-color: white;
 	border: solid 5px white;
 }
+.groupImage{
+	height: 300px;
+}
 .left{
 	float: left;
 }

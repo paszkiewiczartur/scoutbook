@@ -14,13 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import pl.scoutbook.serializer.CustomEventSerializer;
+import pl.scoutbook.serializer.CustomEventDeserializer;
 
 @Entity
 @Table(name = "events")
-@JsonSerialize(using = CustomEventSerializer.class)
+//@JsonSerialize(using = CustomEventSerializer.class)
+@JsonDeserialize(using = CustomEventDeserializer.class)
 public class Event {
 
     @Id
@@ -35,9 +36,12 @@ public class Event {
     @NotNull
     private String place;
     @NotNull
+//    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime start;
     @NotNull
+//    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime end;
+    private String image;
     private String info;
     @ManyToMany(mappedBy = "events")
     private List<UserProfile> users;
@@ -82,6 +86,14 @@ public class Event {
 	public void setEnd(LocalDateTime end) {
 		this.end = end;
 	}
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getInfo() {
 		return info;
 	}
