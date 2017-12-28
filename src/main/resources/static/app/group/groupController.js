@@ -1,5 +1,5 @@
 angular.module('scoutbookApp')
-.constant("groupUrl", "http://localhost:8080/api/groups/")
+.constant("groupUrl", "/api/groups/")
 .controller('groupController', function($rootScope, $scope, $http, $stateParams, $q, 
 		groupUrl, postsUrl, profileUrl, AddMemberService) {
 
@@ -17,7 +17,10 @@ angular.module('scoutbookApp')
 	var loadPostOwners = function(){
 		$scope.profileErrors = []; 
 		angular.forEach($scope.groupData.posts, function(post){
-			$http.get(post._links.owner.href)
+		    var owner = post._links.owner.href;
+		    var index = owner.indexOf("api");
+		    var address = owner.substr(index - 1, owner.length);
+			$http.get(address)
 			.then(function(response){
 				post.owner = response.data;
 			}, function(response){

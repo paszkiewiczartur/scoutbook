@@ -1,5 +1,5 @@
 ﻿angular.module('scoutbookApp')
-.constant("registerUrl", "http://localhost:8080/api/register")
+.constant("registerUrl", "/api/register")
 .controller('registerController', function($rootScope, $state, $scope, $http, registerUrl, AuthenticationService) {
 	$scope.credentials = {};
 	$scope.days = [];

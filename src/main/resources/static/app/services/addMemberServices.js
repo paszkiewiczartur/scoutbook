@@ -1,6 +1,6 @@
 angular.module('scoutbookApp')
-.constant("addGroupMember", "http://localhost:8080/api/groups/addMember")
-.constant("addEventMember", "http://localhost:8080/api/events/addMember")
+.constant("addGroupMember", "/api/groups/addMember")
+.constant("addEventMember", "/api/events/addMember")
 .service('AddMemberService', function($http, LOGIN_ENDPOINT, $rootScope, $state,
 		addEventMember, addGroupMember) {
 	this.addGroupMember = function(friendId, groupId){

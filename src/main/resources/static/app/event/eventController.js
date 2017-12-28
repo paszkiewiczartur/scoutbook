@@ -1,7 +1,7 @@
 angular.module('scoutbookApp')
-.constant("eventsUrl", "http://localhost:8080/api/events/")
+.constant("eventsUrl", "/api/events/")
 .controller('eventController', function($rootScope, $scope, $http, $stateParams, $q,
-		profileUrl, eventsUrl, pageSize, postsUrl, AddMemberService) {
+		 profileUrl, eventsUrl, pageSize, postsUrl, AddMemberService) {
 		
 	var loadPosts = function(){
         $http.get(eventsUrl + $stateParams.eventId + "/posts")
@@ -25,7 +25,10 @@ angular.module('scoutbookApp')
 	var loadPostOwners = function(){
 		$scope.profileErrors = []; 
 		angular.forEach($scope.eventData.posts, function(post){
-			$http.get(post._links.owner.href)
+		    var owner = post._links.owner.href;
+		    var index = owner.indexOf("api");
+		    var address = owner.substr(index - 1, owner.length);
+			$http.get(address)
 			.then(function(response){
 				post.owner = response.data;
 			}, function(response){

@@ -1,5 +1,5 @@
 angular.module('scoutbookApp')
-.constant("userWallPostsUrl", "http://localhost:8080/api/posts/search/findByUserWall?user_profile=")
+.constant("userWallPostsUrl", "/api/posts/search/findByUserWall?user_profile=")
 .controller('profileMainController', function($rootScope, $scope, $http, $stateParams, 
 		profileUrl, userWallPostsUrl, pageSize, postsUrl) {
 

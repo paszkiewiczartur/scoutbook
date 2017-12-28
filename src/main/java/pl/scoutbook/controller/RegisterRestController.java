@@ -47,8 +47,8 @@ public class RegisterRestController {
     		UserProfile savedUserProfile = userProfileRepository.save(userProfile);
     		user.setUserProfile(savedUserProfile);
     		userRepository.save(user);
-    		//emailSender.sendSimpleEmail(user.getEmail());
     		emailSender.sendEmailWithAttachment(user.getEmail());
+    		
     }
 
     @InitBinder

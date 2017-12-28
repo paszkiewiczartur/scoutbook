@@ -1,6 +1,6 @@
 angular.module('scoutbookApp')
-.constant('CHANGEPASSWORD_ENDPOINT', '/api/changePassword')
-.controller('changePasswordController', function($rootScope, $scope, $stateParams, $http, CHANGEPASSWORD_ENDPOINT) {
+.constant('changePasswordUrl', '/api/changePassword')
+.controller('changePasswordController', function($rootScope, $scope, $stateParams, $http, changePasswordUrl) {
 	
 	$scope.responseErrors = {};
 	
@@ -12,7 +12,7 @@ angular.module('scoutbookApp')
 			message.code = $stateParams.code;
 			message.password = $scope.password1;
 			$http
-			.post(CHANGEPASSWORD_ENDPOINT, message)
+			.post(changePasswordUrl, message)
 			.then(function success(successValue) {
 				console.log("successValue:" + successValue);
 				$scope.password1 = "";

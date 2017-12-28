@@ -1,6 +1,6 @@
 angular.module('scoutbookApp')
 .constant('LOGIN_ENDPOINT', '/login')
-.constant("usersUrl", "http://localhost:8080/api/users/search/findByEmail?email=")
+.constant("usersUrl", "/api/users/search/findByEmail?email=")
 .service('AuthenticationService', function($http, LOGIN_ENDPOINT, $rootScope, $state, usersUrl) {
 	this.authenticate = function(credentials) {
 		prepareProfileId(credentials);

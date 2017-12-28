@@ -8,6 +8,9 @@
 	<span ng-if="infoEvent" class="alert alert-danger">{{infoEvent}}</span>
 	<span ng-if="infoPosts" class="alert alert-danger">{{infoPosts}}</span>
 	<span ng-if="infoOrganizer" class="alert alert-danger">{{infoOrganizer}}</span>
+	<div ng-if="eventData.image">
+		<img src="{{eventData.image}}" class="groupImage img-responsive"/>
+	</div>
 	<h1>{{eventData.name}}</h1>
 	<div class="well">
 		Organizator: <a ui-sref="home.profile({profileId: eventData.organizer_id})">

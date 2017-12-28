@@ -1,9 +1,9 @@
 angular.module('scoutbookApp')
-.constant("profileGroupsUrl", "http://localhost:8080/api/userProfiles/")
-.constant("postsUrl", "http://localhost:8080/api/posts/")
-.constant("userWallUrl", "http://localhost:8080/api/userWall/search/findByUser?user=")
-.constant("newEventUrl", "http://localhost:8080/api/events")
-.constant("newGroupUrl", "http://localhost:8080/api/groups")
+.constant("profileGroupsUrl", "/api/userProfiles/")
+.constant("postsUrl", "/api/posts/")
+.constant("userWallUrl", "/api/userWall/search/findByUser?user=")
+.constant("newEventUrl", "/api/events")
+.constant("newGroupUrl", "/api/groups")
 .constant("pageSize", 3)
 .controller('wallController', function($rootScope, $scope, $http, $q, $state,
 		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, pageSize, AddMemberService) {

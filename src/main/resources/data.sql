@@ -1,3 +1,16 @@
+ALTER DATABASE `scoutbook` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `events` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `groups` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `new_password_code` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `post` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_events` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_friends` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_groups` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_profile` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_role` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_roles` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `user_wall` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 insert into user_role(role, description) VALUES("ROLE_USER", "default role for user");
 insert into user_role(role, description) VALUES("ROLE_ADMIN", "default role for admin");
 insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Michał", "Wiśniewski", 1, '1990-01-03', "https://www.baldingbeards.com/wp-content/uploads/2017/03/Johhny-Depp-Jack-Sparrow-Beard.png", "https://pcavote.files.wordpress.com/2016/12/pirates-jack-sparrow.jpg?w=945");

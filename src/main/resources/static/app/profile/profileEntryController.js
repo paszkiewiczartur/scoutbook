@@ -1,5 +1,5 @@
 angular.module('scoutbookApp')
-.constant("profileUrl", "http://localhost:8080/api/userProfiles/")
+.constant("profileUrl", "/api/userProfiles/")
 .controller('profileEntryController', function($rootScope, $scope, $http, $stateParams, profileUrl) {
 	
 	(function () {

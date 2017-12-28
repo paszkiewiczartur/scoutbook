@@ -1,6 +1,6 @@
 angular.module('scoutbookApp')
-.constant('RETRIEVEPASSWORD_ENDPOINT', '/api/retrievePassword')
-.controller('retrievePasswordController', function($rootScope, $scope, $http, RETRIEVEPASSWORD_ENDPOINT) {
+.constant('retrievePasswordUrl', '/api/retrievePassword')
+.controller('retrievePasswordController', function($rootScope, $scope, $http, retrievePasswordUrl) {
 	$scope.encodedAddress = encodeAddress($rootScope.wrongEmail);
 	
 	function encodeAddress(wrongEmail) {
@@ -24,7 +24,7 @@ angular.module('scoutbookApp')
 		var message = {};
 		message.email = $rootScope.wrongEmail;
 		$http
-		.post(RETRIEVEPASSWORD_ENDPOINT, message)
+		.post(retrievePasswordUrl, message)
 		.then(function success(successValue) {
 			console.log("successValue:" + successValue);
 			$scope.emailSent = true;

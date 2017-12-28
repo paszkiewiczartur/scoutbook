@@ -22,7 +22,7 @@
 	border: solid 5px white;
 }
 .groupImage{
-	height: 300px;
+	max-height: 300px;
 }
 .left{
 	float: left;
