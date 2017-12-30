@@ -2,6 +2,7 @@
 	<div ng-if="infoProfile">{{infoProfile}}</div>
 	<div ng-if="infoGroups">{{infoGroups}}</div>
 	<div ng-if="infoEvents">{{infoEvents}}</div>
+	<div ng-if="proposalFriendsError">{{proposalFriendsError}}</div>
 	Grupy:<br><br>
 	<div ng-repeat="groupData in groupsData">
 		 <span class="alert alert-success">
@@ -46,7 +47,20 @@
 	</div>		
 </div>
 <div class="col-md-3">
-	Tu są wyświetlane informacje o urodzinach
+	Tu są wyświetlane informacje o urodzinach:<br>
+	<div class="addMember">
+		<div ng-repeat="friend in proposalFriends" class="well">
+			<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+			<button class="btn btn-md btn-success pull-right" ng-click="addFriend(friend)">
+				Wyślij zaproszenie
+			</button><br>
+			{{friend.firstname}} {{friend.lastname}}
+		</div>
+	</div>
+	<div ng-if="proposalFriendsError">
+		ProposalFriendsInfo<br>
+		{{proposalFriendsInfo}}
+	</div>
 </div>
 <div id="newGroup" class="modal">
   <span class="close" id="closeGroup">×</span>

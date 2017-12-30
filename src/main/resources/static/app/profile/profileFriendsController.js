@@ -10,7 +10,6 @@ angular.module('scoutbookApp')
         });
     })();
 	
-	
 	(function (){
 		if($rootScope.profileId != $stateParams.profileId){
 			$http.get(profileUrl + $rootScope.profileId + "/friends")
@@ -34,7 +33,14 @@ angular.module('scoutbookApp')
 		} else{
 			found = true;
 		}
-		
 		return found;
 	};
+	
+	$scope.friendIsObserver = function(friend){
+		if($rootScope.profileId == friend.id){
+			return true;
+		} else {
+			return false;
+		}
+	}
 });

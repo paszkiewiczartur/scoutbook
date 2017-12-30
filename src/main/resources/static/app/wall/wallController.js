@@ -4,9 +4,10 @@ angular.module('scoutbookApp')
 .constant("userWallUrl", "/api/userWall/search/findByUser?user=")
 .constant("newEventUrl", "/api/events")
 .constant("newGroupUrl", "/api/groups")
+.constant("proposalFriendsUrl", "/api/friends/proposition")
 .constant("pageSize", 3)
 .controller('wallController', function($rootScope, $scope, $http, $q, $state,
-		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, pageSize, AddMemberService) {
+		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, proposalFriendsUrl, pageSize, AddMemberService) {
 
 	$scope.loadPosts = function(){
 		var promises = [];
@@ -50,6 +51,28 @@ angular.module('scoutbookApp')
 		});
 	};
 
+	$scope.loadProposalFriends = function(){
+		var userId = {};
+		userId.userId = $rootScope.profileId;
+		console.log("userId");
+		console.log(userId);
+ 		$http({
+            method : 'POST',
+            url : proposalFriendsUrl,
+            data : userId
+        }).then(function(response) {
+        	console.log("success! response");
+        	console.log(response.data);
+        	$scope.proposalFriends = response.data;
+        }, function(response) {
+        	console.log("failure!");
+        	console.log(response);
+        	console.log("failure!");
+        	console.log(response.data);
+        	$scope.proposalFriendsError = "Something went wrong with loading proposalFriends. Try again later.";
+        	$scope.proposalFriendsInfo = response.message;
+        });
+	};
 	
 	(function () {
         $http.get(profileGroupsUrl + $rootScope.profileId + "/groups")
@@ -71,6 +94,7 @@ angular.module('scoutbookApp')
 
 	(function () {
 		$scope.loadNextUserWallPosts(0, false);
+		$scope.loadProposalFriends();
 	})();
 
     $scope.selectedPage = 0;
@@ -211,5 +235,4 @@ angular.module('scoutbookApp')
  		result += "00";
  		return result;
  	};
- 	
 });

@@ -1,17 +1,13 @@
 package pl.scoutbook.validation;
 
 import java.util.Optional;
-
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 import pl.scoutbook.model.Post;
 
-
 @Component("beforeCreatePostValidator")
-public class PostValidator implements Validator {
-	
+public class PostValidator implements Validator {	
 	
 	public PostValidator(){
 	}

@@ -5,20 +5,22 @@
     	<span class="glyphicon glyphicon-star-empty"></span> Znajomi
     </a><br>
     <div>
-    	<div class="col-md-6 well" ng-repeat="friend in friends">
-    		<div class="col-md-6">
-	    		<img class="friendImage" src="{{friend.profileImage}}" />
-    		</div>
-    		<div class="col-md-6">
-    			<a ui-sref="home.profile.main({profileId: friend.id})">{{friend.firstname}} {{friend.lastname}}</a><br>
-    			<div ng-if="isObserverFriend(friend)">
-    				<span class="glyphicon glyphicon-ok alert alert-info">Znajomi</span>
+    	<div ng-repeat="friend in friends">
+    		<div ng-if="!friendIsObserver(friend)" class="col-md-6 well">
+    			<div class="col-md-6">
+	    			<img class="friendImage" src="{{friend.profileImage}}" />
     			</div>
-    			<div ng-if="!isObserverFriend(friend)">
-    				<span class="btn btn-success btn-lg">
-         	 			<span class="glyphicon glyphicon-plus"></span> Dodaj znajomego 
-        			</span>
-    			</div>
+    			<div class="col-md-6">
+    				<a ui-sref="home.profile.main({profileId: friend.id})">{{friend.firstname}} {{friend.lastname}}</a><br>
+    				<div ng-if="isObserverFriend(friend)">
+    					<span class="glyphicon glyphicon-ok alert alert-info">Znajomi</span>
+    				</div>
+    				<div ng-if="!isObserverFriend(friend)">
+    					<span class="btn btn-success btn-lg">
+    	   	  	 			<span class="glyphicon glyphicon-plus"></span> Dodaj znajomego 
+    	    			</span>
+    				</div>
+	    		</div>
     		</div>
 	    </div>
     </div>

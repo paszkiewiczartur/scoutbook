@@ -1,6 +1,6 @@
 ﻿	<div id="registerNav">
 		<div class="left navOdstep">
-			<h2>Scoutbook</h2>
+			<a ui-sref="start" class="white"><h2>Scoutbook</h2></a>
 		</div>
 		<div class="form-inline navOdstep left navTopMargin">
 		<form name="loginForm">
@@ -9,7 +9,6 @@
 			<label>Hasło:</label>
 			<input type="password" ng-model="credentials.password" class="form-control" required>
 			<button type="submit" ng-click="login()" class="btn btn-success" ng-disabled="loginForm.$invalid">Zaloguj</button>
-			<a ui-sref="admin">Admin</a>
 		</form>
 		</div>	
 		<div class="clearer"></div>
@@ -71,7 +70,7 @@
 			</div>
 		
 			<div>
-				<input type="button" value="Utwórz konto" ng-disabled="registerForm.$invalid"
+				<input type="button" value="Utwórz konto" ng-disabled="registerForm.$invalid || registrationSent"
                     ng-click="prepareAndSendRegisterData()"
                     class="btn btn-success"/>
 			</div>

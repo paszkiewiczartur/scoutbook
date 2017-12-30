@@ -27,6 +27,7 @@
 	}
 	
     var sendRegisterData = function (registerData) {
+    	$scope.registrationSent = true;
     	$scope.inputErrors  = {};
         var data = angular.copy(registerData);
         $http.post(registerUrl, data)
@@ -40,6 +41,7 @@
             	var response = errors.data.errors;
             	console.log(response);
                 prepareInputError(response);
+                $scope.registrationSent = false;
             });
     };
     

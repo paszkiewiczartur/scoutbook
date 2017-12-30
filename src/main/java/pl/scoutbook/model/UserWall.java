@@ -29,6 +29,12 @@ public class UserWall {
     private boolean shown = false;
     
 	public UserWall(){}
+	
+	public UserWall(UserProfile userProfile, Post post, boolean shown){
+		this.userProfile = userProfile;
+		this.post = post;
+		this.shown = shown;
+	}
 
 	public Long getId() {
 		return id;

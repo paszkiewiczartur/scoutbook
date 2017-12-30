@@ -34,13 +34,15 @@
 <div class="col-md-3 well">
 	Dodaj członków:<br>
 	<div class="search-container">
-      <input type="text" ng-model="search" placeholder="Search.." name="search" class="form-control">
+    	<input type="text" ng-model="search" placeholder="Search.." name="search" class="form-control">
   	</div>
-	<div ng-repeat="friend in friends | filter:search" class="well">
-		<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
-		{{friend.firstname}} {{friend.lastname}}
-		<button ng-if="!friend.isMember" class="btn btn-md btn-success pull-right" ng-click="addMember(friend)">Dodaj członka</button>
-		<button ng-if="friend.isMember" class="btn btn-md btn-info pull-right">Jest członkiem</button>
+	<div class="addMember">
+		<div ng-repeat="friend in friends | filter:search" class="well">
+			<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+			{{friend.firstname}} {{friend.lastname}}
+			<button ng-if="!friend.isMember" class="btn btn-md btn-success pull-right" ng-click="addMember(friend)">Dodaj członka</button>
+			<button ng-if="friend.isMember" class="btn btn-md btn-info pull-right">Jest członkiem</button>
+		</div>
 	</div>
 </div>
 

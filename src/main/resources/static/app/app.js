@@ -7,8 +7,6 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
     $urlRouterProvider.otherwise('/register');
 
     $urlRouterProvider.when('/home', '/home/wall');
-
-    //$urlRouterProvider.when('/home/profile/:profileId', '/home/profile/:profileId/main');
     
     $stateProvider.state('admin', {
         url: '/admin',
@@ -77,7 +75,15 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         .state('home.group', {
             url: '/group/:groupId',
             templateUrl: 'app/group/group.html',
-            controller: 'groupController'
+            controller: 'groupController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
         })
 /*        .state('home.profile', {
         	url: '/profile/:profileId',
@@ -97,22 +103,56 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
         .state('home.profile.main', {
         	url: '/main',
         	templateUrl: '/app/profile/profileMain.html',
-        	controller: 'profileMainController'
+        	controller: 'profileMainController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
         })
         .state('home.profile.friends', {
         	url: '/friends',
         	templateUrl: '/app/profile/profileFriends.html',
-        	controller: 'profileFriendsController'
+        	controller: 'profileFriendsController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
         })
         .state('home.profile.info', {
         	url: '/info',
         	templateUrl: '/app/profile/profileInfo.html',
-        	controller: 'profileInfoController'
+        	controller: 'profileInfoController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
+
         })
         .state('home.event', {
         	url: '/event/:eventId',
         	templateUrl: '/app/event/event.html',
-        	controller: 'eventController'
+        	controller: 'eventController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
+
         })
         ;
 });

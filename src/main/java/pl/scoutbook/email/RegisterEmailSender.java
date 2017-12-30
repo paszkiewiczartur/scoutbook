@@ -21,6 +21,6 @@ public class RegisterEmailSender {
 	
 	public void sendEmailWithAttachment(String sendTo){
 		
-		emailService.sendMessageWithAttachment(sendTo, emailSubject, emailSubject, emailAttachment);
+		emailService.sendMessageWithAttachment(sendTo, emailSubject, emailContent, emailAttachment);
 	}
 }
