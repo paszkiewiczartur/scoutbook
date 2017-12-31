@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import pl.scoutbook.entities.User;
 import pl.scoutbook.model.RegisterDTO;
-import pl.scoutbook.model.User;
 import pl.scoutbook.repository.UserRepository;
 
 

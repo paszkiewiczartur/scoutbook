@@ -12,11 +12,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.node.IntNode;
 
-import pl.scoutbook.model.Event;
-import pl.scoutbook.model.Group;
-import pl.scoutbook.model.Post;
+import pl.scoutbook.entities.Event;
+import pl.scoutbook.entities.Group;
+import pl.scoutbook.entities.Post;
+import pl.scoutbook.entities.UserProfile;
 import pl.scoutbook.model.PostCategory;
-import pl.scoutbook.model.UserProfile;
 import pl.scoutbook.repository.EventsRepository;
 import pl.scoutbook.repository.GroupsRepository;
 import pl.scoutbook.repository.UserProfileRepository;

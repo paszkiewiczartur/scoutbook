@@ -9,9 +9,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
- 
-import pl.scoutbook.model.User;
-import pl.scoutbook.model.UserRole;
+
+import pl.scoutbook.entities.User;
+import pl.scoutbook.entities.UserRole;
 import pl.scoutbook.repository.UserRepository;
  
 public class CustomUserDetailsService implements UserDetailsService {

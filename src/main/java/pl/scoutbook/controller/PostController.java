@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import pl.scoutbook.model.Post;
-import pl.scoutbook.model.UserProfile;
-import pl.scoutbook.model.UserWall;
+import pl.scoutbook.entities.Post;
+import pl.scoutbook.entities.UserProfile;
+import pl.scoutbook.entities.UserWall;
 import pl.scoutbook.repository.PostRepository;
 import pl.scoutbook.repository.UserWallRepository;
 

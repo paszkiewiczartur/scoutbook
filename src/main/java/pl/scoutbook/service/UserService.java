@@ -2,9 +2,9 @@ package pl.scoutbook.service;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
- 
-import pl.scoutbook.model.User;
-import pl.scoutbook.model.UserRole;
+
+import pl.scoutbook.entities.User;
+import pl.scoutbook.entities.UserRole;
 import pl.scoutbook.repository.UserRepository;
 import pl.scoutbook.repository.UserRoleRepository;
  

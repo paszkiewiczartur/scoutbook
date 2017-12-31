@@ -1,4 +1,4 @@
-package pl.scoutbook.model;
+package pl.scoutbook.entities;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import pl.scoutbook.model.PostCategory;
 import pl.scoutbook.serializer.CustomPostDeserializer;
 import pl.scoutbook.serializer.CustomPostSerializer;
 

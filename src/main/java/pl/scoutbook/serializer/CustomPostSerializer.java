@@ -7,8 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import pl.scoutbook.model.Post;
-import pl.scoutbook.model.UserWall;
+import pl.scoutbook.entities.Post;
+import pl.scoutbook.entities.UserWall;
 
 public class CustomPostSerializer extends StdSerializer<Post> {
     

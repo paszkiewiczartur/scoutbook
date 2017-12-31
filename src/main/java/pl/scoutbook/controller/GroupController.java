@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import pl.scoutbook.entities.Group;
+import pl.scoutbook.entities.UserProfile;
 import pl.scoutbook.model.AddMember;
-import pl.scoutbook.model.Group;
-import pl.scoutbook.model.UserProfile;
 import pl.scoutbook.repository.GroupsRepository;
 import pl.scoutbook.repository.UserProfileRepository;
 

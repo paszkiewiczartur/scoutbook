@@ -3,6 +3,7 @@
 	<div ng-if="infoGroups">{{infoGroups}}</div>
 	<div ng-if="infoEvents">{{infoEvents}}</div>
 	<div ng-if="proposalFriendsError">{{proposalFriendsError}}</div>
+	<div ng-if="birthdayFriendsError">{{birthdayFriendsError}}</div>
 	Grupy:<br><br>
 	<div ng-repeat="groupData in groupsData">
 		 <span class="alert alert-success">
@@ -47,19 +48,34 @@
 	</div>		
 </div>
 <div class="col-md-3">
-	Tu są wyświetlane informacje o urodzinach:<br>
-	<div class="addMember">
-		<div ng-repeat="friend in proposalFriends" class="well">
+	<div class="addMember well">
+	Dzisiaj urodziny mają:<br>
+		<div ng-repeat="friend in birthdayFriends" class="well">
 			<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
-			<button class="btn btn-md btn-success pull-right" ng-click="addFriend(friend)">
-				Wyślij zaproszenie
-			</button><br>
-			{{friend.firstname}} {{friend.lastname}}
+			<a class="pull-right" ui-sref="home.profile.main({profileId: friend.id})">
+				{{friend.firstname}} {{friend.lastname}}
+			</a>
 		</div>
 	</div>
-	<div ng-if="proposalFriendsError">
-		ProposalFriendsInfo<br>
-		{{proposalFriendsInfo}}
+	<div class="addMember well">
+		Propozycje znajomych:<br>
+		<div ng-repeat="friend in proposalFriends" class="well">
+			<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+			<button ng-if="!friend.addFriendSent" 
+				class="btn btn-md btn-success pull-right" ng-click="addFriend(friend, $index)">
+				Dodaj znajomego
+			</button>
+			<button ng-if="friend.addFriendSuccess" class="btn btn-md btn-info pull-right">
+				Jesteście znajomymi
+			</button>
+			<button ng-if="friend.addFriendFailure" class="btn btn-md btn-warning pull-right">
+				Coś poszło nie tak
+			</button>			
+			<br>
+			<a ui-sref="home.profile.main({profileId: friend.id})">
+				{{friend.firstname}} {{friend.lastname}}
+			</a>
+		</div>
 	</div>
 </div>
 <div id="newGroup" class="modal">

@@ -4,7 +4,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import pl.scoutbook.model.Post;
+
+import pl.scoutbook.entities.Post;
 
 @Component("beforeCreatePostValidator")
 public class PostValidator implements Validator {	

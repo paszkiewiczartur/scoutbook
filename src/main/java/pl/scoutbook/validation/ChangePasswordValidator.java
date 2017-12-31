@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import pl.scoutbook.entities.NewPasswordCode;
 import pl.scoutbook.model.ChangePassword;
-import pl.scoutbook.model.NewPasswordCode;
 import pl.scoutbook.repository.NewPasswordCodeRepository;
 
 

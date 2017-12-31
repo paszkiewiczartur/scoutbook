@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-import pl.scoutbook.model.Event;
+import pl.scoutbook.entities.Event;
 
 public class CustomEventSerializer extends StdSerializer<Event> {
     

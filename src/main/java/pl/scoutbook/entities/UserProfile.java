@@ -1,4 +1,4 @@
-package pl.scoutbook.model;
+package pl.scoutbook.entities;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+
+import pl.scoutbook.model.Gender;
 
 @Entity
 public class UserProfile {

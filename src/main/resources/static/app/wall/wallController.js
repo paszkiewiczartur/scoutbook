@@ -5,9 +5,12 @@ angular.module('scoutbookApp')
 .constant("newEventUrl", "/api/events")
 .constant("newGroupUrl", "/api/groups")
 .constant("proposalFriendsUrl", "/api/friends/proposition")
+.constant("addFriendUrl", "/api/friends/addFriend")
+.constant("birthdayUrl", "/api/friends/birthday")
 .constant("pageSize", 3)
 .controller('wallController', function($rootScope, $scope, $http, $q, $state,
-		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, proposalFriendsUrl, pageSize, AddMemberService) {
+		newGroupUrl, newEventUrl, profileGroupsUrl, userWallUrl, postsUrl, proposalFriendsUrl, addFriendUrl, birthdayUrl,
+		pageSize, AddMemberService) {
 
 	$scope.loadPosts = function(){
 		var promises = [];
@@ -54,25 +57,42 @@ angular.module('scoutbookApp')
 	$scope.loadProposalFriends = function(){
 		var userId = {};
 		userId.userId = $rootScope.profileId;
-		console.log("userId");
-		console.log(userId);
  		$http({
             method : 'POST',
             url : proposalFriendsUrl,
             data : userId
         }).then(function(response) {
-        	console.log("success! response");
+        	console.log("success!");
         	console.log(response.data);
         	$scope.proposalFriends = response.data;
         }, function(response) {
-        	console.log("failure!");
-        	console.log(response);
         	console.log("failure!");
         	console.log(response.data);
         	$scope.proposalFriendsError = "Something went wrong with loading proposalFriends. Try again later.";
         	$scope.proposalFriendsInfo = response.message;
         });
 	};
+
+	$scope.loadBirthdayFriends = function(){
+		var userId = {};
+		userId.userId = $rootScope.profileId;
+ 		$http({
+            method : 'POST',
+            url : birthdayUrl,
+            data : userId
+        }).then(function(response) {
+        	console.log("success!");
+        	console.log(response.data);
+        	$scope.birthdayFriends = response.data;
+        }, function(response) {
+        	console.log("failure!");
+        	console.log(response);
+        	console.log("failure!");
+        	console.log(response.data);
+        	$scope.birthdayFriendsError = "Something went wrong with loading birthdayFriends. Try again later.";
+        });
+	};
+
 	
 	(function () {
         $http.get(profileGroupsUrl + $rootScope.profileId + "/groups")
@@ -95,6 +115,7 @@ angular.module('scoutbookApp')
 	(function () {
 		$scope.loadNextUserWallPosts(0, false);
 		$scope.loadProposalFriends();
+		$scope.loadBirthdayFriends();
 	})();
 
     $scope.selectedPage = 0;
@@ -108,6 +129,28 @@ angular.module('scoutbookApp')
     	$scope.selectedPage = $scope.selectedPage - 1;
     	$scope.loadNextUserWallPosts($scope.selectedPage, false);
     };
+    
+    $scope.addFriend = function(friend, index){
+    	$scope.proposalFriends[index].addFriendSent = true;
+    	var addFriend = {};
+    	addFriend.userId = $rootScope.profileId;
+    	addFriend.friendId = friend.id;
+ 		$http({
+            method : 'POST',
+            url : addFriendUrl,
+            data : addFriend
+        }).then(function(response) {
+        	console.log("success!");
+        	console.log(response.data);
+        	$scope.proposalFriends[index].addFriendSuccess = true;
+        }, function(response) {
+        	console.log("failure!");
+        	console.log(response);
+        	console.log("failure!");
+        	console.log(response.data);
+        	$scope.proposalFriends[index].addFriendFailure = true;
+        });
+    }
     
     $scope.newPostText = "";
     

@@ -23,7 +23,6 @@ public class UserIdValidator implements Validator{
     
     @Override
     public void validate(Object obj, Errors errors) {
-    	System.out.println("inside userIdValidator");
         UserId userId = (UserId) obj;
         if (userId.getUserId() == null) {
             errors.rejectValue("userId", "emptyUserProfileId");

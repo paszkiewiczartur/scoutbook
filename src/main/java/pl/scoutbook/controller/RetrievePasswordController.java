@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import pl.scoutbook.email.CodeGenerator;
 import pl.scoutbook.email.RetrieveEmailSender;
+import pl.scoutbook.entities.NewPasswordCode;
+import pl.scoutbook.entities.User;
 import pl.scoutbook.model.ChangePassword;
-import pl.scoutbook.model.NewPasswordCode;
 import pl.scoutbook.model.RetrievePasswordMessage;
-import pl.scoutbook.model.User;
 import pl.scoutbook.repository.NewPasswordCodeRepository;
 import pl.scoutbook.repository.UserRepository;
 import pl.scoutbook.validation.ChangePasswordValidator;

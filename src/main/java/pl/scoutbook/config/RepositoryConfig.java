@@ -4,9 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 
-import pl.scoutbook.model.Event;
-import pl.scoutbook.model.Group;
-import pl.scoutbook.model.UserProfile;
+import pl.scoutbook.entities.Event;
+import pl.scoutbook.entities.Group;
+import pl.scoutbook.entities.UserProfile;
 
 @Configuration
 public class RepositoryConfig extends RepositoryRestConfigurerAdapter {

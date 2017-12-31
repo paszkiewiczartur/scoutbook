@@ -1,4 +1,4 @@
-package pl.scoutbook.model;
+package pl.scoutbook.entities;
 
 import java.time.LocalDateTime;
 
