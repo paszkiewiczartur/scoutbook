@@ -41,6 +41,13 @@
 .groupImage{
 	max-height: 300px;
 }
+.infoMessenger{
+	margin-top: 200px;
+	padding: 20px;
+	background-color: lightblue;
+	border: 2px solid blue;
+	border-radius: 20px;
+}
 .loading{
 	width: 35px;
 	height: 35px;

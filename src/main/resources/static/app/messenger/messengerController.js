@@ -39,9 +39,9 @@ angular.module('scoutbookApp')
             data : userId
         }).then(function(response) {
         	$scope.conversationUsers = response.data;
-        	//$scope.loadConversationMessages();
 			$scope.loadMessages().then(function(response){
 	        	$scope.setConversation($scope.conversationUsers[0]);
+	        	$scope.conversationUsers[0].conversationMessages = [];
 	        	hideLoading();
 			}, function (error){	
 				console.log("Scoutbook couldn't load history of messages.");
