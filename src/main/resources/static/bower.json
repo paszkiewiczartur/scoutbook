@@ -17,6 +17,7 @@
   "dependencies": {
     "angular": "^1.6.7",
     "angular-route": "^1.6.7",
-    "angular-resource": "^1.6.7"
+    "angular-resource": "^1.6.7",
+    "sockjs-client": "^1.1.4"
   }
 }

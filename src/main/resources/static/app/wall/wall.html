@@ -4,6 +4,8 @@
 	<div ng-if="infoEvents">{{infoEvents}}</div>
 	<div ng-if="proposalFriendsError">{{proposalFriendsError}}</div>
 	<div ng-if="birthdayFriendsError">{{birthdayFriendsError}}</div>
+	<br>
+	<span class="alert alert-info"><a ui-sref="home.messenger">Messenger</a></span><br><br>
 	Grupy:<br><br>
 	<div ng-repeat="groupData in groupsData">
 		 <span class="alert alert-success">
@@ -60,7 +62,7 @@
 	<div class="addMember well">
 		Propozycje znajomych:<br>
 		<div ng-repeat="friend in proposalFriends" class="well">
-			<img src="{{friend.profileImage}}" class="img-responsive" style="height:35px; display:inline"/>
+			<img src="{{friend.profileImage}}" class="img-responsive proposalFriendImage"/>
 			<button ng-if="!friend.addFriendSent" 
 				class="btn btn-md btn-success pull-right" ng-click="addFriend(friend, $index)">
 				Dodaj znajomego
@@ -110,4 +112,3 @@
 	</form>
     </div>
 </div>
-

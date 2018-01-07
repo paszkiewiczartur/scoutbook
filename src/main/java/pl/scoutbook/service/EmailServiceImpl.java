@@ -43,8 +43,9 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject(subject);
             helper.setText(text);
 
-            FileSystemResource file = new FileSystemResource(pathToAttachment);
-            helper.addAttachment(file.getFilename(), file);
+//            FileSystemResource file = new FileSystemResource(pathToAttachment);
+            ClassPathResource image = new ClassPathResource(pathToAttachment);
+            helper.addAttachment(pathToAttachment, image);
 
             emailSender.send(message);
         } catch (MessagingException e) {
@@ -61,7 +62,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(text, true);
-            
+
             ClassPathResource image = new ClassPathResource(pathToAttachment);
             helper.addInline(imageName, image);
             

@@ -4,7 +4,6 @@ angular.module('scoutbookApp')
 	$scope.encodedAddress = encodeAddress($rootScope.wrongEmail);
 	
 	function encodeAddress(wrongEmail) {
-		console.log(wrongEmail);
 		var email = wrongEmail;
 	    var index = email.indexOf("@");
 	    var begin = email.substr(0, index);

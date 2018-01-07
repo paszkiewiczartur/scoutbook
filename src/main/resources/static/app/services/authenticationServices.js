@@ -36,7 +36,10 @@ angular.module('scoutbookApp')
 		.then(function success(value) {
 			var response = angular.copy(value);
 			$http.defaults.headers.post.Authorization = authHeader.Authorization;
+			//$http.defaults.headers.common.Authorization = authHeader.Authorization;
 			$rootScope.authenticated = true;
+			$rootScope.userLogin = credentials.email;
+			$rootScope.userPassword = credentials.password;
 			authenticated = true;			
 			$state.go("home");
 		}, function error(reason) {

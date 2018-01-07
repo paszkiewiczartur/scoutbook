@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,21 +18,52 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import pl.scoutbook.entities.UserProfile;
-import pl.scoutbook.model.AddFriend;
+import pl.scoutbook.model.ConversationUserDTO;
 import pl.scoutbook.model.UserId;
+import pl.scoutbook.repository.SavedMessagesRepository;
 import pl.scoutbook.repository.UserProfileRepository;
-import pl.scoutbook.validation.AddFriendValidator;
+import pl.scoutbook.service.ConversationService;
+import pl.scoutbook.service.GeneratorService;
 import pl.scoutbook.validation.UserIdValidator;
 
 @Controller
 @RequestMapping("/api/friends")
 public class FriendController {
-
+	private final static long PAGE_SIZE = 2;
+	
 	@Autowired
 	private UserProfileRepository userProfileRespository;
+	
+	@Autowired
+	private ConversationService conversationService;
+	
+	@Autowired
+	private SavedMessagesRepository savedMessageRepository;
+	
+	@Autowired
+	private GeneratorService generator;
+	
+	@PostMapping("/messenger")
+	public ResponseEntity<List<ConversationUserDTO>> messengerFriends(@Valid @RequestBody UserId userId){
+		Long id = new Long(userId.getUserId());
+		UserProfile user = userProfileRespository.findOne(id);
+		List<ConversationUserDTO> messengerFriends = new LinkedList<>();
+		messengerFriends.add(generator.getGeneratorUserProfile());
+		ModelMapper modelMapper = new ModelMapper();
+		for(UserProfile friend: user.getFriends()){
+    		ConversationUserDTO conversationUser = modelMapper.map(friend, ConversationUserDTO.class);
+			Long conversationId = conversationService.getConversationId(user.getId(), friend.getId());
+			if(conversationId != null){
+				conversationUser.setConversation(conversationId);
+				messengerFriends.add(conversationUser);
+				Long messagesAmount = savedMessageRepository.countMessages(conversationId);
+				conversationUser.setPage((long)(Math.ceil((double)(messagesAmount) / (double)(PAGE_SIZE))));
+			}
+		}
+		return new ResponseEntity<List<ConversationUserDTO>>(messengerFriends, new HttpHeaders(), HttpStatus.ACCEPTED);
+	}
 	
 	@PostMapping("/birthday")
 	public ResponseEntity<List<UserProfile>> birthdayFriends(@Valid @RequestBody UserId userId){

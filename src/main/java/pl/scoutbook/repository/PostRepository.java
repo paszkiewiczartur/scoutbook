@@ -11,18 +11,7 @@ import pl.scoutbook.entities.Post;
 
 @RepositoryRestResource(path = "posts", collectionResourceRel = "posts")
 public interface PostRepository extends JpaRepository<Post, Long> {
-//	List<GroupPost> findByGroup(@Param(value = "group") Long group, Pageable p);
 
-/*	  @Query(value = "SELECT * FROM group_post WHERE groups_id = ?1",
-	    countQuery = "SELECT count(*) FROM group_post WHERE groups_id = ?1",
-	    nativeQuery = true)
-	  Page<GroupPost> findByGroup(Long group, Pageable pageable);*/
-	/*@Query(
-	        value = "SELECT * FROM group_post WHERE groups_id = ?1 ORDER BY ?#{#pageable}",
-	        countQuery = "SELECT count(*) FROM group_post WHERE groups_id = ?1 ORDER BY ?#{#pageable}",
-	        nativeQuery = true)
-	    Page<GroupPost> findByGroup(@Param(value = "group") Long group, Pageable pageable);
-	*/
 	@Query(
 	        value = "SELECT * FROM post WHERE groups_id = :group ORDER BY ?#{#pageable}",
 	        countQuery = "SELECT count(*) FROM post WHERE groups_id = :group ORDER BY ?#{#pageable}",
@@ -34,5 +23,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	        nativeQuery = true)
 	    Page<Post> findByUserWall(@Param(value = "user_profile") Long user_profile, Pageable pageable);
 	
-	//:#{#group}
 }

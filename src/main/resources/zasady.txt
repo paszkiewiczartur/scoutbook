@@ -1,0 +1,6 @@
+﻿Należy stosować zrozumiałe nazwy zmiennych. Można stosować zrozumiałe skróty. W nazewnictwie zmiennych należy przestrzegać norm danego języka. Mimo że stosowanie długich, opisowych nazwjest czasochłonne, to jest dobrym nawykiem, przynoszącym długofalowe korzyści. Dzięki temu dużo łatwiej jest interpretować kod programu.
+Warto zarezerwować pewne nazwy na zmienne używane wielokrotnie np. sterujące pętlami (i, j), elementy zbiorów, liczby (a, x), liczby elementów w zbiorze (n, m).
+Dobrze jest sporządzić listy używanych zmiennych.
+Należy dzielić program na podprogramy realizujące mniejsze fragmenty zadania.
+Należy dbać o przejrzystość tekstu programu i zachowywać czytelność jego struktury np:-każdą instrukcję zapisywać w nowym wierszu -stosować wcięcia -dodawać komentarze
+Należy pisać programy odporne na błędy użytkowników. Program powinien instruować swojego użytkownika o działaniach, wyświetlać komunikaty, być odpornym na wprowadzenie błędnych danych.

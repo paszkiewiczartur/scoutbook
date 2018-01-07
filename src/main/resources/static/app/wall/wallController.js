@@ -27,7 +27,8 @@ angular.module('scoutbookApp')
 			promises.push(promise);
 		});
 		return $q.all(promises);		
-	}
+	};
+	
 	$scope.loadPostsOwners = function(){
 		$scope.ownersErrors = [];
 		angular.forEach($scope.posts, function(item){
@@ -62,8 +63,6 @@ angular.module('scoutbookApp')
             url : proposalFriendsUrl,
             data : userId
         }).then(function(response) {
-        	console.log("success!");
-        	console.log(response.data);
         	$scope.proposalFriends = response.data;
         }, function(response) {
         	console.log("failure!");
@@ -81,8 +80,6 @@ angular.module('scoutbookApp')
             url : birthdayUrl,
             data : userId
         }).then(function(response) {
-        	console.log("success!");
-        	console.log(response.data);
         	$scope.birthdayFriends = response.data;
         }, function(response) {
         	console.log("failure!");

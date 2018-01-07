@@ -67,11 +67,19 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
                 }]
              }
         })
-/*        .state('home.group', {
-        	url: '/group',
-        	templateUrl: '/app/group/group.html',
-        	controller: 'groupController'
-        })*/
+        .state('home.messenger', {
+        	url: '/messenger',
+        	templateUrl: '/app/messenger/messenger.html',
+        	controller: 'messengerController',
+        	resolve: {
+                security: ['$q', function($q){
+                    if(authenticated == false){
+                    	console.log("Not Authorized");
+                       return $q.reject("Not Authorized");
+                    }
+                }]
+             }
+        })
         .state('home.group', {
             url: '/group/:groupId',
             templateUrl: 'app/group/group.html',

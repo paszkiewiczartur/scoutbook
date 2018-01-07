@@ -25,7 +25,8 @@
 			</div>
 		<div ng-hide="successRegister">
 		<form name="registerForm">
-			<div>Utwórz nowe konto!</div>
+			<div>Utwórz nowe konto! (Na skrzynkę pocztową dostaniesz maila)
+  			</div>
 			<div ng-class="{ 'has-error': (inputErrors.firstname || (registerForm.firstname.$invalid && registerForm.firstname.$dirty))}">
    				<div class="alert alert-danger" ng-show="inputErrors.firstname || 
    								(registerForm.firstname.$invalid && registerForm.firstname.$dirty)">

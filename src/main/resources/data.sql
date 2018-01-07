@@ -11,6 +11,9 @@ ALTER TABLE `user_profile` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE `user_role` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE `user_roles` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE `user_wall` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `conversation` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+ALTER TABLE `saved_message` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 insert into user_role(role, description) VALUES("ROLE_USER", "default role for user");
 insert into user_role(role, description) VALUES("ROLE_ADMIN", "default role for admin");
 insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Michał", "Wiśniewski", 1, '1990-01-03', "https://www.baldingbeards.com/wp-content/uploads/2017/03/Johhny-Depp-Jack-Sparrow-Beard.png", "https://pcavote.files.wordpress.com/2016/12/pirates-jack-sparrow.jpg?w=945");
@@ -24,7 +27,7 @@ insert into user(email, password, user_profile_id) VALUES("london@scout.uk", "te
 insert into user_roles(user_id, roles_id) VALUES(3, 1);
 insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Marcin", "Chodakowski", 1, '1975-01-01', "http://www.mbc.net/default/mediaObject/Photos/2013/september/20-9-2013/mbc2/SWEENEY-TODD-THE-DEMON-BARBER-OF-FLEET-STREET_1024/original/2d4a98d533d41519afe1bcdbcf0eaf0b3a9b940b/SWEENEY-TODD-THE-DEMON-BARBER-OF-FLEET-STREET_1024.jpg", "http://moviesroom.pl/images/0.Aktualizacja_listopad/Pat/sweeney-todd-the-demon-barber-of-fleet-street-4fdb7ba3576e8-1000x600.jpg");
 insert into user(email, password, user_profile_id) VALUES("test2", "test2", 4);
-insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Anna", "Mostowiak", 1, '1986-01-01', "https://upload.wikimedia.org/wikipedia/en/6/68/Mrs._lovett.jpg", "https://i.ytimg.com/vi/wRYKTPEP09I/maxresdefault.jpg");
+insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Anna", "Mostowiak", 0, '1986-01-01', "https://upload.wikimedia.org/wikipedia/en/6/68/Mrs._lovett.jpg", "https://i.ytimg.com/vi/wRYKTPEP09I/maxresdefault.jpg");
 insert into user(email, password, user_profile_id) VALUES("test3", "test3", 5);
 insert into user_profile(firstname, lastname, gender, birthday, profile_image, background_image) VALUES("Maciej", "Lubicz", 1, '1995-12-30', "https://annamika87.files.wordpress.com/2015/02/ed.jpg", "https://www.heyuguys.com/images/2013/08/Edward-Scissorhands.jpg");
 insert into user(email, password, user_profile_id) VALUES("test4", "test4", 6);
@@ -39,6 +42,18 @@ insert into user_friends(user_profile_id, user_friend_id) VALUES(1, 2);
 insert into user_friends(user_profile_id, user_friend_id) VALUES(2, 1);
 insert into user_friends(user_profile_id, user_friend_id) VALUES(4, 3);
 insert into user_friends(user_profile_id, user_friend_id) VALUES(3, 4);
+insert into conversation(user, friend) VALUES(1, 4);
+insert into conversation(user, friend) VALUES(2, 4);
+insert into conversation(user, friend) VALUES(1, 2);
+insert into conversation(user, friend) VALUES(3, 4);
+insert into saved_message(message, created_at, user, conversation) VALUES("Cześć Marcin!", "2017-12-01 12:11:10", 1, 1);
+insert into saved_message(message, created_at, user, conversation) VALUES("Cześć Michał!", "2017-12-01 12:11:10", 4, 1);
+insert into saved_message(message, created_at, user, conversation) VALUES("Jak minęły święta?", "2017-12-01 12:11:10", 1, 1);
+insert into saved_message(message, created_at, user, conversation) VALUES("Słabo, teściowa była.", "2017-12-01 12:11:10", 4, 1);
+insert into saved_message(message, created_at, user, conversation) VALUES("A to współczuję :)", "2017-12-01 12:11:10", 1, 1);
+insert into saved_message(message, created_at, user, conversation) VALUES("Witaj Hufcu!", "2017-12-01 12:11:10", 1, 3);
+insert into saved_message(message, created_at, user, conversation) VALUES("Witaj Michale!", "2017-12-01 12:11:10", 2, 3);
+insert into saved_message(message, created_at, user, conversation) VALUES("Milego dnia!", "2017-12-01 12:11:10", 1, 3);
 
 insert into groups(name, image) VALUES("hufiec Białystok", "https://zgloszenia24.pl/uploads/users/143/5847b9aa966d7419ad90658f894f07e3.jpg");
 insert into post(content, created_at, groups_id, owner_id, category) VALUES("To jest nasz pierwszy post", "2017-12-01 12:11:10", 1, 2, 1);

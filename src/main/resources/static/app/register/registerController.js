@@ -80,6 +80,4 @@
     	
     	sendRegisterData($scope.registerData);
     };
-    
-
 });

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import pl.scoutbook.entities.Conversation;
 import pl.scoutbook.entities.UserProfile;
 import pl.scoutbook.model.AddFriend;
+import pl.scoutbook.repository.ConversationsRepository;
 import pl.scoutbook.repository.UserProfileRepository;
 import pl.scoutbook.validation.AddFriendValidator;
 
@@ -21,6 +23,9 @@ public class AddFriendController {
 
 	@Autowired
 	private UserProfileRepository userProfileRepository;
+	
+	@Autowired
+	private ConversationsRepository conversationsRepository;
 	
 	@PostMapping("/api/friends/addFriend")
     @ResponseStatus(HttpStatus.CREATED)
@@ -31,8 +36,13 @@ public class AddFriendController {
 		friend.getFriends().add(user);
 		userProfileRepository.save(user);
 		userProfileRepository.save(friend);
+		Conversation conversation = new Conversation();
+		conversation.setUser(user.getId());
+		conversation.setFriend(friend.getId());
+		conversationsRepository.save(conversation);
 	}
-    @InitBinder
+
+	@InitBinder
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(new AddFriendValidator(userProfileRepository));
     }

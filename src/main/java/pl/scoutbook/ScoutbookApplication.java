@@ -8,6 +8,6 @@ public class ScoutbookApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ScoutbookApplication.class, args);
-		
+			
 	}
 }
