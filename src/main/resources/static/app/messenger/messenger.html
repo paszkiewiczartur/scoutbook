@@ -27,7 +27,9 @@
 	<div class="conversation">
 		<div ng-repeat="message in dialogueUser.conversationMessages"
 			 ng-class="{'dialogueFriend': dialogueUser.id == message.user, 'dialogueMe': dialogueUser.id != message.user }">
-			<span ng-if="dialogueUser.id == message.user">{{dialogueUser.firstname}}:</span>
+			<!-- <span ng-if="dialogueUser.id == message.user">{{dialogueUser.firstname}}:</span>-->
+			<img src="{{dialogueUser.profileImage}}" ng-if="dialogueUser.id == message.user"
+				class="img-responsive img-circle proposalFriendImage"/>
 			<span>{{message.message}}</span>
 		</div>
 	</div>

@@ -41,7 +41,11 @@ angular.module('scoutbookApp')
         	$scope.conversationUsers = response.data;
 			$scope.loadMessages().then(function(response){
 	        	$scope.setConversation($scope.conversationUsers[0]);
-	        	$scope.conversationUsers[0].conversationMessages = [];
+	        	for(var i=0; i<$scope.conversationUsers.length; i++){
+	        		if($scope.conversationUsers[i].conversationMessages == null){
+	        			$scope.conversationUsers[i].conversationMessages = [];
+	        		}
+	        	}
 	        	hideLoading();
 			}, function (error){	
 				console.log("Scoutbook couldn't load history of messages.");

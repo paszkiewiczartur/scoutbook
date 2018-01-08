@@ -31,6 +31,13 @@ public class SavedMessage {
     
     public SavedMessage(){}
 
+    public SavedMessage(String message, Long user, Long conversation){
+    	this.message = message;
+    	this.createdAt = LocalDateTime.now();
+    	this.user = user;
+    	this.conversation = conversation;
+    }
+    
 	public Long getId() {
 		return id;
 	}

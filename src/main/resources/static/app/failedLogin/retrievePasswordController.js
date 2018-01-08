@@ -20,6 +20,7 @@ angular.module('scoutbookApp')
 	};
 	
 	$scope.sendEmailRetrievingPassword = function(){
+		$scope.messagePrepared = true;
 		var message = {};
 		message.email = $rootScope.wrongEmail;
 		$http

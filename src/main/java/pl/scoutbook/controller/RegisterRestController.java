@@ -16,16 +16,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.scoutbook.email.RegisterEmailSender;
+import pl.scoutbook.entities.Conversation;
 import pl.scoutbook.entities.Event;
 import pl.scoutbook.entities.Group;
 import pl.scoutbook.entities.Post;
+import pl.scoutbook.entities.SavedMessage;
 import pl.scoutbook.entities.User;
 import pl.scoutbook.entities.UserProfile;
 import pl.scoutbook.entities.UserWall;
 import pl.scoutbook.model.RegisterDTO;
+import pl.scoutbook.repository.ConversationsRepository;
 import pl.scoutbook.repository.EventsRepository;
 import pl.scoutbook.repository.GroupsRepository;
 import pl.scoutbook.repository.PostRepository;
+import pl.scoutbook.repository.SavedMessagesRepository;
 import pl.scoutbook.repository.UserProfileRepository;
 import pl.scoutbook.repository.UserRepository;
 import pl.scoutbook.repository.UserWallRepository;
@@ -46,7 +50,10 @@ public class RegisterRestController {
     private PostRepository postRepository;
     @Autowired
     private UserWallRepository userWallRepository;
-    
+    @Autowired
+    private ConversationsRepository conversationsRepository;
+    @Autowired
+    private SavedMessagesRepository savedMessagesRepository;
     @Autowired
     private RegisterEmailSender emailSender;
     
@@ -101,6 +108,29 @@ public class RegisterRestController {
 		for(int i=0; i<7; i++){
 			posts[i] = postRepository.findOne(new Long(i+1));
 			userWallRepository.save(new UserWall(user, posts[i], false));
+		}
+		
+		Conversation conversation1 = new Conversation();
+		conversation1.setUser(user.getId());
+		conversation1.setFriend(friend1.getId());
+
+		Conversation conversation2 = new Conversation();
+		conversation2.setUser(user.getId());
+		conversation2.setFriend(friend2.getId());
+		
+		Conversation savedConversation1 = conversationsRepository.save(conversation1);
+		Conversation savedConversation2 = conversationsRepository.save(conversation2);
+		
+		SavedMessage[] messages = new SavedMessage[6];
+		messages[0] = new SavedMessage("Witaj w Scoutbooku!", friend1.getId(), savedConversation1.getId());
+		messages[1] = new SavedMessage("Cześć Michał!", user.getId(), savedConversation1.getId());
+		messages[2] = new SavedMessage("Co u Ciebie?", friend1.getId(), savedConversation1.getId());
+		messages[3] = new SavedMessage("Witaj w Scoutbooku!", friend2.getId(), savedConversation2.getId());
+		messages[4] = new SavedMessage("Cześć Michał!", user.getId(), savedConversation2.getId());
+		messages[5] = new SavedMessage("Co u Ciebie?", friend2.getId(), savedConversation2.getId());
+		
+		for(int i=0; i<6; i++){
+			savedMessagesRepository.save(messages[i]);
 		}
     }
     
