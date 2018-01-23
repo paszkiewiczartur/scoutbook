@@ -1,30 +1,17 @@
 package pl.scoutbook.controller;
 
 import java.security.Principal;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import pl.scoutbook.entities.SavedMessage;
-import pl.scoutbook.entities.UserProfile;
 import pl.scoutbook.model.ChatMessage;
 import pl.scoutbook.model.Notification;
-import pl.scoutbook.model.UserId;
-import pl.scoutbook.repository.ConversationsRepository;
 import pl.scoutbook.repository.SavedMessagesRepository;
-import pl.scoutbook.repository.UserProfileRepository;
 import pl.scoutbook.service.ConversationService;
 import pl.scoutbook.service.GeneratorService;
 
@@ -32,9 +19,6 @@ import pl.scoutbook.service.GeneratorService;
 public class MessengerController {	
 	@Autowired
 	private SimpMessagingTemplate messaging;
-	
-	@Autowired
-	private UserProfileRepository userProfileRepository;
 	
 	@Autowired
 	private SavedMessagesRepository savedMessagesRepository;

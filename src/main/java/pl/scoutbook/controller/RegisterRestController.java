@@ -73,30 +73,30 @@ public class RegisterRestController {
     			userProfile.setProfileImage("https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Simpleicons_Interface_user-black-close-up-shape.svg/1000px-Simpleicons_Interface_user-black-close-up-shape.svg.png");
     		if(userProfile.getBackgroundImage() == null)
     			userProfile.setBackgroundImage("http://u.profitroom.pl/hotelmazuria.pl/thumb/1600x900/uploads/ognisko.jpg");
-    		UserProfile savedUserProfile = userProfileRepository.save(userProfile);
-    		user.setUserProfile(savedUserProfile);
+    		userProfile = userProfileRepository.save(userProfile);
+    		user.setUserProfile(userProfile);
     		userRepository.save(user);
     		emailSender.sendEmailWithAttachment(user.getEmail());
     		
-    		initUserProfile(savedUserProfile);
+    		initUserProfile(userProfile);
     }
 
     private void initUserProfile(UserProfile user){
-		UserProfile friend1 = userProfileRepository.findOne(new Long(1));
-		UserProfile friend2 = userProfileRepository.findOne(new Long(4));
+		UserProfile friend1 = userProfileRepository.findOne(Long.valueOf(1));
+		UserProfile friend2 = userProfileRepository.findOne(Long.valueOf(4));
 		user.setFriends(new LinkedList<UserProfile>());
 		user.getFriends().add(friend1);
 		user.getFriends().add(friend2);
 		friend1.getFriends().add(user);
 		friend2.getFriends().add(user);
 		
-		Group group1 = groupsRepository.findOne(new Long(1));
-		Group group2 = groupsRepository.findOne(new Long(2));
+		Group group1 = groupsRepository.findOne(Long.valueOf(1));
+		Group group2 = groupsRepository.findOne(Long.valueOf(2));
 		user.setGroups(new LinkedList<Group>());
 		user.getGroups().add(group1);
 		user.getGroups().add(group2);
 		
-		Event event = eventsRepository.findOne(new Long(1));
+		Event event = eventsRepository.findOne(Long.valueOf(1));
 		user.setEvents(new LinkedList<Event>());
 		user.getEvents().add(event);
 		

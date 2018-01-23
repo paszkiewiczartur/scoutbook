@@ -31,37 +31,29 @@ public class PostController {
     public void addPost(@Valid @RequestBody Post post) {
     	Post savedPost = postRepository.save(post);
     	if(Optional.ofNullable(post.getUserProfile()).isPresent()){
-    		UserWall userWall = new UserWall();
-    		userWall.setUserProfile(post.getUserProfile());
-    		userWall.setPost(savedPost);
-    		userWall.setShown(false);
-    		userWallRepository.save(userWall);
+			saveUserWall(post.getUserProfile(), savedPost);
     		List<UserProfile> friends = post.getUserProfile().getFriends();
     		for(UserProfile friend: friends){
-    			UserWall userWallFriend = new UserWall();
-    			userWallFriend.setUserProfile(friend);
-    			userWallFriend.setPost(savedPost);
-    			userWallFriend.setShown(false);
-    			userWallRepository.save(userWallFriend);
+    			saveUserWall(friend, savedPost);
     		}
     	} else if(Optional.ofNullable(post.getGroup()).isPresent()){
     		List<UserProfile> members = post.getGroup().getUsers();
     		for(UserProfile member: members){
-    			UserWall userWall = new UserWall();
-    			userWall.setUserProfile(member);
-    			userWall.setPost(savedPost);
-    			userWall.setShown(false);
-    			userWallRepository.save(userWall);
+    			saveUserWall(member, savedPost);
     		}
     	} else {
     		List<UserProfile> members = post.getEvent().getUsers();
     		for(UserProfile member: members){
-    			UserWall userWall = new UserWall();
-    			userWall.setUserProfile(member);
-    			userWall.setPost(savedPost);
-    			userWall.setShown(false);
-    			userWallRepository.save(userWall);
+    			saveUserWall(member, savedPost);
     		}    		
     	}
     }   
+    
+    private void saveUserWall(UserProfile user, Post savedPost){
+		UserWall userWall = new UserWall();
+		userWall.setUserProfile(user);
+		userWall.setPost(savedPost);
+		userWall.setShown(false);
+		userWallRepository.save(userWall);    	
+    }
 }

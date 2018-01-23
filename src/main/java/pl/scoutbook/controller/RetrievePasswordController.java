@@ -43,7 +43,6 @@ public class RetrievePasswordController {
 		newPasswordCode.setCode(code);
 		newPasswordCode.setEmail(message.getEmail());
 		newPasswordCodeRepository.save(newPasswordCode);
-//		emailSender.sendSimpleEmail(message.getEmail(), code);
 		emailSender.sendHTMLEmailWithAttachment(message.getEmail(), code);
     }
 

@@ -50,15 +50,15 @@ public class CustomPostDeserializer extends StdDeserializer<Post> {
         if(Optional.ofNullable(node.get("user_profile_id")).isPresent()){
         	UserProfile user_profile = userProfileRepository.findOne(
         			(Long) ((IntNode) node.get("user_profile_id")).numberValue().longValue());
-            return new Post(content, user_profile, owner, category);
+            return new Post.Builder(content, owner, category).user_profile(user_profile).build();
         }else if(Optional.ofNullable(node.get("groups_id")).isPresent()){
         	Group group = groupsRepository.findOne(
         			(Long) ((IntNode) node.get("groups_id")).numberValue().longValue());
-        	return new Post(content, group, owner, category);
+        	return new Post.Builder(content, owner, category).group(group).build();
         }else{
         	Event event = eventsRepository.findOne(
         			(Long) ((IntNode) node.get("events_id")).numberValue().longValue());
-        	return new Post(content, event, owner, category);
+        	return new Post.Builder(content, owner, category).event(event).build();
         }
     }
 }
