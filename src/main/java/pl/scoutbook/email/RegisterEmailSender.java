@@ -1,26 +1,32 @@
 package pl.scoutbook.email;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import pl.scoutbook.service.EmailServiceImpl;
 
 @Component
 public class RegisterEmailSender {
-	private final String emailSubject = "Rejestracja w Scoutbook!";
-	private final String emailContent = "Ta wiadomość została wygenerowana automatycznie. "
-			+ "Ten adres email będzie służył do odzyskania hasła"
-			+ " w razie jego utraty. Prosimy nie odpowiadać na tę wiadomość.";
-	private final String emailAttachment = "krzyz.jpg";
-	@Autowired
+    @Autowired
 	private EmailServiceImpl emailService;
+    
+    @Value("${registerEmailSubject}")
+	private String emailSubject;
+    @Value("${registerEmailImageName}")
+	private String imageName;
+	@Value("${registerEmailImagePath}")
+	private String imagePath;
+	@Value("${registerAttachmentEmailPattern}")
+	private String attachmentEmailPattern;
 	
-	public void sendSimpleEmail(String sendTo){
-		emailService.sendSimpleMessage(sendTo, emailSubject, emailContent);
+	public void sendHTMLEmailWithAttachment(String sendTo){
+		String emailContent = attachmentEmailContent();
+		emailService.sendHTMLMessageWithAttachment(sendTo, emailSubject, emailContent, imagePath, imageName);
 	}
-	
-	public void sendEmailWithAttachment(String sendTo){
-		
-		emailService.sendMessageWithAttachment(sendTo, emailSubject, emailContent, emailAttachment);
+
+	public String attachmentEmailContent(){
+		return String.format(attachmentEmailPattern, imageName);
 	}
+
 }

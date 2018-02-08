@@ -15,7 +15,7 @@ scoutbookApp.config(function($stateProvider, $urlRouterProvider, $locationProvid
 
     $stateProvider.state('start', {
         url: '/start',
-        template: 'Redirecting...<script>window.location="http://145.239.90.229:8080/register"</script>'
+        template: 'Redirecting...<script>window.location="http://localhost:8080/register"</script>'
    });
     
     $locationProvider.html5Mode({

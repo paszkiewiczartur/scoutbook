@@ -43,8 +43,8 @@ public class RetrievePasswordController {
 		newPasswordCode.setCode(code);
 		newPasswordCode.setEmail(message.getEmail());
 		newPasswordCodeRepository.save(newPasswordCode);
-		emailSender.sendHTMLEmailWithAttachment(message.getEmail(), code);
-    }
+		emailSender.sendEmailWithAttachment(message.getEmail(), code);
+	}
 
 	@PostMapping
 	@RequestMapping("/api/changePassword")

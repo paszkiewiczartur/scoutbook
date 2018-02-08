@@ -76,7 +76,7 @@ public class RegisterRestController {
     		userProfile = userProfileRepository.save(userProfile);
     		user.setUserProfile(userProfile);
     		userRepository.save(user);
-    		emailSender.sendEmailWithAttachment(user.getEmail());
+    		emailSender.sendHTMLEmailWithAttachment(user.getEmail());
     		
     		initUserProfile(userProfile);
     }
