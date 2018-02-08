@@ -15,7 +15,7 @@ Furthermore, Scoutbook enables sending messages to friends in real time (chat).
 
 Scoutbook is available on server. It's address: <strong>http://145.239.90.229:8080</strong> 
 
-I invite you to take a look around with on it. If you don't want to register, you can login with these credentials:
+I invite you to take a look around on it. If you don't want to register, you can login with these credentials:
 <ul>
 <li> email:<strong>test</strong></li>
 <li> password:<strong>test</strong></li>
